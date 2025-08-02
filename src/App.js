@@ -43,6 +43,31 @@ function App() {
                 </button>
             </div>
             <div className="error-container">{error}</div>
+            <div className="urls-container">
+                <div className="header urls-header">
+                    <div className="column-short-urls">Короткая ссылка</div>
+                    <div className="column-stat-urls">Статистика</div>
+                    <div className="column-action">Действие</div>
+                </div>
+
+                <div className="url-row">
+                    <div className="column-short-url">
+                        <a href="https://clck.ru/37BEwD" target="_blank" rel="noopener noreferrer">
+                            https://clck.ru/37BEwD
+                        </a>
+                    </div>
+                    <div className="column-stat-urls">
+                        <a href="/stats/37BEwD" className="stats-link">
+                            Посмотреть
+                        </a>
+                    </div>
+                    <div className="column-action">
+                        <button className="delete-button" title="Удалить ссылку">
+                            Удалить
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
