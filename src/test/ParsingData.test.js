@@ -1,5 +1,5 @@
 import UAParser from "ua-parser-js";
-import IpInfo from "../../IpInfo";
+import IpInfo from "../service/IpInfo";
 
 describe('UserAgent', () => {
     test("Тестирование работы UserAgent", () => {

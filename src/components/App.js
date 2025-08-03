@@ -1,5 +1,5 @@
 import './App.css';
-import UrlShortner from "./UrlShortner";
+import UrlShortner from "../service/UrlShortner";
 import {useState} from "react";
 
 function App() {

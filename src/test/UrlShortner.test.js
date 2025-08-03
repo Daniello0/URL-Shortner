@@ -1,4 +1,4 @@
-import UrlShortner from "../UrlShortner";
+import UrlShortner from "../service/UrlShortner";
 
 describe('UrlShortner', () => {
     test('Получить короткую ссылку', async () => {
