@@ -1,5 +1,5 @@
 export default class UrlShortner {
-    async getShortUrl(url) {
+    async getShortUrlString(urlString) {
         let apiUrl = "https://clck.ru/--";
         try {
             const response = await fetch(apiUrl, {
@@ -7,7 +7,7 @@ export default class UrlShortner {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: `url=${encodeURIComponent(url)}`
+                body: `url=${encodeURIComponent(urlString)}`
             });
             if (!response.ok) {
                 console.error("Ошибка соединения:", response.status, response.statusText);

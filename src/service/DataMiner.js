@@ -1,6 +1,6 @@
 import IpInfo from "./IpInfo";
 import UserStatistic from "../models/UserStatistic";
-import UAParser from "ua-parser-js";
+import { UAParser } from "ua-parser-js";
 
 export default class DataMiner {
 

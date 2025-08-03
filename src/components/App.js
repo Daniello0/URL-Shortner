@@ -1,28 +1,44 @@
 import './App.css';
 import UrlShortner from "../service/UrlShortner";
 import {useState} from "react";
+import Data from "../models/Data";
 
 function App() {
-    const [url, setUrl] = useState('');
+    const [urlString, seturlString] = useState('');
     const [error, setErrorMessage] = useState('');
+    const [urlData, setUrlData] = useState('');
 
     const handleShortenClick = async () => {
-        if (!url) {
+        if (!urlString) {
             console.log("Введите ссылку");
             setErrorMessage("Введите ссылку")
             return;
         }
 
-        let shorter = new UrlShortner();
-        console.log("Ссылка: ", url);
+        try {
+            const data = await Data.create(urlString);
 
-        const shortUrlResult = await shorter.getShortUrl(url);
+            if (data === null) {
+                console.log("Не удалось создать короткую ссылку");
+                setErrorMessage("Не удалось создать короткую ссылку");
+                return;
+            }
 
-        if (shortUrlResult) {
-            console.log("Короткая ссылка:", shortUrlResult);
-            setErrorMessage('');
-        } else {
-            console.log("Не удалось создать короткую ссылку");
+            if (data) {
+                console.log(data.url.toString());
+                console.log(data.shortUrl.toString());
+                console.log(data.statUrl.toString());
+
+                await data.addUserStatistic();
+
+                if (data.userStatistic) {
+                    console.log(JSON.stringify(data.userStatistic));
+                }
+            }
+
+            setErrorMessage('')
+        } catch (error) {
+            console.log("Не удалось создать короткую ссылку", error);
             setErrorMessage("Не удалось создать короткую ссылку");
         }
     }
@@ -35,8 +51,8 @@ function App() {
                     type={'url'}
                     className="url-input"
                     placeholder="Введите ссылку"
-                    value={url}
-                    onChange={(e) => setUrl(e.target.value)}
+                    value={urlString}
+                    onChange={(e) => seturlString(e.target.value)}
                 />
                 <button className="button" onClick={handleShortenClick}>
                     Добавить
