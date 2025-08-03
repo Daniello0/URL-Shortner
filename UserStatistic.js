@@ -1,4 +1,4 @@
-export default class UrlStatistic {
+export default class UserStatistic {
 
     #date = null;
     #ip = null;
