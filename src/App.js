@@ -34,30 +34,38 @@ function App() {
                 <input
                     type={'url'}
                     className="url-input"
-                    placeholder="Put your URL"
+                    placeholder="Введите ссылку"
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
                 />
                 <button className="button" onClick={handleShortenClick}>
-                    Add
+                    Добавить
                 </button>
             </div>
             <div className="error-container">{error}</div>
             <div className="urls-container">
-                <div className="header urls-header">
-                    <div className="column-short-urls">Короткая ссылка</div>
-                    <div className="column-stat-urls">Статистика</div>
+                <div className="urls-header url-row-layout">
+                    <div className="column-main-url">Основная ссылка</div>
+                    <div className="column-short-url">Сокращенная ссылка</div>
+                    <div className="column-stats">Статистика</div>
                     <div className="column-action">Действие</div>
                 </div>
 
-                <div className="url-row">
+                {/* ТЕСТОВАЯ СТРОКА 1 */}
+                <div className="url-row url-row-layout">
+                    <div className="column-main-url">
+                        <a className="original-url-text" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                           target="_blank" rel="noopener noreferrer">
+                            https://www.youtube.com/watch?v=dQw4w9WgXcQ
+                        </a>
+                    </div>
                     <div className="column-short-url">
                         <a href="https://clck.ru/37BEwD" target="_blank" rel="noopener noreferrer">
                             https://clck.ru/37BEwD
                         </a>
                     </div>
-                    <div className="column-stat-urls">
-                        <a href="/stats/37BEwD" className="stats-link">
+                    <div className="column-stats">
+                        <a href="https://clck.ru/37BEwD+" target="_blank" rel="noopener noreferrer" className="stats-link">
                             Посмотреть
                         </a>
                     </div>
@@ -67,6 +75,33 @@ function App() {
                         </button>
                     </div>
                 </div>
+
+                {/* ТЕСТОВАЯ СТРОКА 2 */}
+                <div className="url-row url-row-layout">
+                    <div className="column-main-url">
+                         <a className="original-url-text" href="https://react.dev/learn"
+                            target="_blank" rel="noopener noreferrer">
+                            https://react.dev/learn
+                        </a>
+                    </div>
+                    <div className="column-short-url">
+                        <a href="https://clck.ru/ABC123" target="_blank" rel="noopener noreferrer">
+                            https://clck.ru/ABC123
+                        </a>
+                    </div>
+                    <div className="column-stats">
+                        <a href="https://clck.ru/ABC123+" target="_blank" rel="noopener noreferrer" className="stats-link">
+                            Посмотреть
+                        </a>
+                    </div>
+                    <div className="column-action">
+                        <button className="delete-button" title="Удалить ссылку">
+                            Удалить
+                        </button>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     );

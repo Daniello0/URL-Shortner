@@ -63,23 +63,91 @@ body {
 .urls-container {
   margin-top: 35px;
   width: 100%;
-  max-width: 700px;
+  max-width: 800px;
+}
+
+.url-row-layout {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.urls-container > .url-row-layout:last-child {
+  border-bottom: none;
 }
 
 .urls-header {
-  justify-content: space-between;
-  display: flex;
-  align-items: center;
-  padding: 0 15px;
-  border-bottom: 2px solid #e0e0e0;
-  margin-bottom: 10px;
-}
-
-.header {
-  padding: 12px 0;
+  font-weight: bold;
+  color: #7f8c8d;
   font-size: 14px;
-  font-weight: 600;
-  color: #666;
   text-transform: uppercase;
+  border-bottom: 2px solid #bdc3c7;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
+.url-row {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.column-main-url {
+  flex: 2;
+}
+
+.column-short-url {
+  flex: 1.5;
+}
+
+.column-stats {
+  flex: 1;
+  text-align: center;
+}
+
+.column-action {
+  flex: 0.5;
+  text-align: left;
+}
+
+.column-short-url a, .original-url-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #296c6c;
+  text-decoration: none;
+}
+.column-short-url a:hover, .original-url-text:hover {
+  text-decoration: underline;
+}
+
+.original-url-text {
+  cursor: pointer;
+}
+
+.stats-link {
+  color: #2980b9;
+  text-decoration: none;
+  font-weight: 500;
+}
+.stats-link:hover {
+  text-decoration: underline;
+}
+
+/*КНОПКА*/
+
+.delete-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 5px;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  line-height: 1;
+  transition: background-color 0.2s;
+}
+
+.delete-button:hover {
+  background-color: #fce4e4;
+}
