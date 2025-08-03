@@ -14,10 +14,6 @@ export default class Url {
         return this.#url;
     }
 
-    async getShortUrl(urlShortner) {
-        return await urlShortner.getShortUrl(this.#url);
-    }
-
     getStatUrl() {
         return this.#url += "+";
     }

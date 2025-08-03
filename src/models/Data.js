@@ -1,22 +1,33 @@
 import Url from "./Url";
 import UserStatistic from "./UserStatistic";
+import UrlShortner from "../service/UrlShortner";
+import DataMiner from "../service/DataMiner";
 
 export default class Data {
 
     #url = null;
-    #urlStatistic = null;
+    #shortUrl = null;
+    #userStatistic = [];
 
-    constructor( { url, Statistic } ) {
+    constructor(url) {
         this.#url = new Url(url);
-        this.#urlStatistic = new UserStatistic(Statistic);
+        this.#shortUrl = new UrlShortner().getShortUrl(url);
+    }
+
+    addUserStatistic() {
+        this.#userStatistic.push(new DataMiner().getUserStatisticData());
     }
 
     get url() {
         return this.#url;
     }
 
-    get urlStatistic() {
-        return this.#urlStatistic;
+    get userStatistic() {
+        return this.#userStatistic;
+    }
+
+    get shortUrl() {
+        return this.#shortUrl;
     }
 
 }

@@ -12,14 +12,14 @@ export default class DataMiner {
         const uaData = uaParser.getResult();
 
         if (ipData) {
-            const userStatistics = new UserStatistic({
+            return new UserStatistic({
                 data: new Date().toISOString(),
                 ip: ipData.ip,
                 region: ipData.region,
                 browser: uaData.browser.name,
                 browserVersion: uaData.browser.version,
                 os: uaData.os.name
-            })
+            });
         }
     }
 }
