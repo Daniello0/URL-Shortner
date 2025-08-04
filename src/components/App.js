@@ -73,8 +73,22 @@ function App() {
         return urlString;
     }
 
+    function addDataToUrlData(data) {
+        setUrlData(prevState => [...prevState, data]);
+    }
+
+    function removeDataFromUrlData(data) {
+        setUrlData(prevState => prevState.filter(urlData => urlData.shortUrl.toString() !== data.shortUrl.toString()));
+    }
+
     function validateData(data) {
         return data !== null;
+    }
+
+    const handleDeleteButtonPressed = (data) => {
+        return () => {
+            removeDataFromUrlData(data);
+        }
     }
 
     const handleCutUrlButtonClick = async () => {
@@ -94,17 +108,16 @@ function App() {
             }
 
             if (data) {
-                data.addUserStatistic();
-                setUrlData(prevState => [...prevState, data]);
+                addDataToUrlData(data);
                 // Далее - обработка данных
                 // console.log(data.url.toString());
                 // console.log(data.shortUrl.toString());
                 // console.log(data.statUrl.toString());
                 // console.log(data.userStatistic);
-                console.log("urlData из localStorage после добавления:\n", urlData);
             }
 
             setErrorMessage('');
+            setUrlString('');
         } catch (error) {
             console.log("Не удалось создать короткую ссылку", error);
             setErrorMessage("Не удалось создать короткую ссылку");
@@ -141,7 +154,7 @@ function App() {
                             <div className="column-main-url">
                                 <a className="original-url-text" href={data.url.toString()}
                                    target="_blank" rel="noopener noreferrer">
-                                    {data.url.origin}
+                                    {data.url.toString()}
                                 </a>
                             </div>
                             <div className="column-short-url">
@@ -155,38 +168,14 @@ function App() {
                                 </a>
                             </div>
                             <div className="column-action">
-                                <button className="delete-button" title="Удалить ссылку" id={data.shortUrl.toString()}>
+                                <button className="delete-button" title="Удалить ссылку"
+                                        onClick={handleDeleteButtonPressed(data)}>
                                     Удалить
                                 </button>
                             </div>
                         </div>
                     )
                 })}
-
-                {/* ТЕСТОВАЯ СТРОКА 1 */}
-                <div className="url-row url-row-layout">
-                    <div className="column-main-url">
-                        <a className="original-url-text" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                           target="_blank" rel="noopener noreferrer">
-                            https://www.youtube.com/watch?v=dQw4w9WgXcQ (test)
-                        </a>
-                    </div>
-                    <div className="column-short-url">
-                        <a href="https://clck.ru/37BEwD" target="_blank" rel="noopener noreferrer">
-                            https://clck.ru/37BEwD (test)
-                        </a>
-                    </div>
-                    <div className="column-stats">
-                        <a href="https://clck.ru/37BEwD+" target="_blank" rel="noopener noreferrer" className="stats-link">
-                            Посмотреть (test)
-                        </a>
-                    </div>
-                    <div className="column-action">
-                        <button className="delete-button" title="Удалить ссылку">
-                            Удалить
-                        </button>
-                    </div>
-                </div>
 
             </div>
         </div>

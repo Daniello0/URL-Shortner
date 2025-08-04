@@ -63,7 +63,7 @@ body {
 .urls-container {
   margin-top: 35px;
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px;
 }
 
 .url-row-layout {
@@ -93,24 +93,25 @@ body {
 }
 
 .column-main-url {
-  flex: 2;
+  flex: 3;
+  overflow-wrap: break-word;
 }
 
 .column-short-url {
-  flex: 1.5;
+  flex: 2;
 }
 
 .column-stats {
+  flex: 2;
+}
+
+.column-action {
   flex: 1;
   text-align: center;
 }
 
-.column-action {
-  flex: 0.5;
-  text-align: left;
-}
-
 .column-short-url a, .original-url-text {
+  max-width: 300px;
   font-size: 16px;
   font-weight: 500;
   color: #296c6c;
@@ -134,20 +135,22 @@ body {
 }
 
 /*КНОПКА*/
-
 .delete-button {
-  background: none;
+  padding: 8px 15px;
+
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  background-color: #2980b9;
+
   border: none;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 20px;
-  padding: 5px;
-  border-radius: 50%;
-  width: 34px;
-  height: 34px;
-  line-height: 1;
-  transition: background-color 0.2s;
+
+  white-space: nowrap;
 }
 
-.delete-button:hover {
-  background-color: #fce4e4;
+.original-url-text {
+  display: block;
+  max-width: 300px;
 }
