@@ -3,15 +3,16 @@ import DataMiner from "../service/DataMiner";
 
 export default class Data {
 
-    #url = null;
-    #shortUrl = null;
-    #statUrl = null;
-    #userStatistic = [];
+    url = null;
+    shortUrl = null;
+    statUrl = null;
+    userStatistic = [];
 
-    constructor (originalUrl, shortUrl, statUrl) {
-        this.#url = originalUrl;
-        this.#shortUrl = shortUrl;
-        this.#statUrl = statUrl;
+    constructor (originalUrl, shortUrl, statUrl, userStatistic = []) {
+        this.url = originalUrl;
+        this.shortUrl = shortUrl;
+        this.statUrl = statUrl;
+        this.userStatistic = userStatistic;
     }
 
     static async create(urlString) {
@@ -37,23 +38,6 @@ export default class Data {
     }
 
     async addUserStatistic() {
-        this.#userStatistic.push(await new DataMiner().getUserStatisticData());
+        this.userStatistic.push(await new DataMiner().getUserStatisticData());
     }
-
-    get url() {
-        return this.#url;
-    }
-
-    get userStatistic() {
-        return this.#userStatistic;
-    }
-
-    get statUrl() {
-        return this.#statUrl;
-    }
-
-    get shortUrl() {
-        return this.#shortUrl;
-    }
-
 }

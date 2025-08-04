@@ -12,8 +12,9 @@ export default class DataMiner {
         const uaData = uaParser.getResult();
 
         if (ipData) {
+            const now = new Date();
             return new UserStatistic({
-                data: Date.now(),
+                date: now.toLocaleString(),
                 ip: ipData.ip,
                 region: ipData.region,
                 browser: uaData.browser.name,
