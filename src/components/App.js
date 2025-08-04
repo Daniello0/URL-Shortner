@@ -32,7 +32,7 @@ function App() {
                 await data.addUserStatistic();
 
                 if (data.userStatistic) {
-                    console.log(JSON.stringify(data.userStatistic));
+                    console.log(data.userStatistic);
                 }
             }
 

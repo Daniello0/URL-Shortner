@@ -8,15 +8,22 @@ export default class UserStatistic {
     #os = "";
 
     constructor( {date, ip, region, browser, browserVersion, os} ) {
-        this.#date = date | null;
-        this.#ip = ip | null;
-        this.#region = region | "";
-        this.#browser = browser | "";
-        this.#browserVersion = browserVersion | "";
-        this.#os = os | "";
+        this.#date = date || "Не определено";
+        this.#ip = ip || "Не определено";
+        this.#region = region || "Не определено";
+        this.#browser = browser || "Не определено";
+        this.#browserVersion = browserVersion || "Не определено";
+        this.#os = os || "Не определено";
     }
 
-    getStatArray() {
-        return [this.#date, this.#ip, this.#region, this.#browser, this.#browserVersion, this.#os];
+    getStatObj() {
+        return {
+            date: this.#date,
+            ip: this.#ip,
+            region: this.#region,
+            browser: this.#browser,
+            browserVersion: this.#browserVersion,
+            os: this.#os
+        }
     }
 }

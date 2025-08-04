@@ -13,7 +13,7 @@ export default class DataMiner {
 
         if (ipData) {
             return new UserStatistic({
-                data: new Date().toISOString(),
+                data: Date.now(),
                 ip: ipData.ip,
                 region: ipData.region,
                 browser: uaData.browser.name,
