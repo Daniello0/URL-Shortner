@@ -69,6 +69,17 @@ function App() {
         }
     }, [urlData]);
 
+    useEffect(() => {
+        let timerId;
+        if (error) {
+            timerId = setTimeout(() => {
+                setErrorMessage("");
+            }, 2000);
+        }
+
+        return () => clearTimeout(timerId);
+    }, [error]);
+
     function validateUrlString(urlString) {
         return urlString;
     }
@@ -92,6 +103,9 @@ function App() {
     }
 
     const handleCutUrlButtonClick = async () => {
+
+        console.log(urlData);
+
         if (!validateUrlString(urlString)) {
             console.log("Введите ссылку");
             setErrorMessage("Введите ссылку");
@@ -148,9 +162,9 @@ function App() {
                     <div className="column-action">Действие</div>
                 </div>
 
-                {urlData.map((data, index) => {
+                {urlData.map((data) => {
                     return (
-                        <div className="url-row url-row-layout" key={index}>
+                        <div className="url-row url-row-layout" key={data.shortUrl.toString()}>
                             <div className="column-main-url">
                                 <a className="original-url-text" href={data.url.toString()}
                                    target="_blank" rel="noopener noreferrer">
