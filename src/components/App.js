@@ -6,6 +6,8 @@ import UserStatistic from "../models/UserStatistic";
 function App() {
     const [urlString, setUrlString] = useState('');
     const [error, setErrorMessage] = useState('');
+
+    //Перед получением добавляет типы данных
     const [urlData, setUrlData] = useState(() => {
         try {
             const savedUrlDataString = localStorage.getItem('urlData');
@@ -41,7 +43,7 @@ function App() {
         }
     });
 
-    // useEffect для сохранения urlDate в localStorage
+    // useEffect для сохранения urlDate в localStorage (перед сохранением убирает типы данных)
     useEffect(() => {
         try {
             const dataToSave = urlData.map(data => {
@@ -96,14 +98,21 @@ function App() {
         return data !== null;
     }
 
+    function addUserStatisticToData(data) {
+        return async () => {
+            await data.addUserStatistic();
+        }
+    }
+
     const handleDeleteButtonPressed = (data) => {
         return () => {
             removeDataFromUrlData(data);
         }
     }
 
-    const handleCutUrlButtonClick = async () => {
+    const handleAddUrlButtonClick = async () => {
 
+        //ДЛЯ ТЕСТИРОВАНИЯ
         console.log(urlData);
 
         if (!validateUrlString(urlString)) {
@@ -149,7 +158,7 @@ function App() {
                     value={urlString}
                     onChange={(e) => setUrlString(e.target.value)}
                 />
-                <button className="button" onClick={handleCutUrlButtonClick}>
+                <button className="button" onClick={handleAddUrlButtonClick}>
                     Добавить
                 </button>
             </div>
@@ -172,12 +181,14 @@ function App() {
                                 </a>
                             </div>
                             <div className="column-short-url">
-                                <a href={data.shortUrl.toString()} target="_blank" rel="noopener noreferrer">
+                                <a href={data.shortUrl.toString()} target="_blank" rel="noopener noreferrer"
+                                   onClick={addUserStatisticToData(data)}>
                                     {data.shortUrl.toString()}
                                 </a>
                             </div>
                             <div className="column-stats">
-                                <a href={data.statUrl.toString()} target="_blank" rel="noopener noreferrer" className="stats-link">
+                                <a href={data.statUrl.toString()} target="_blank" rel="noopener noreferrer"
+                                   className="stats-link">
                                     {data.statUrl.toString()}
                                 </a>
                             </div>
