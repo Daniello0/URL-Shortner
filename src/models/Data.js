@@ -38,6 +38,8 @@ export default class Data {
     }
 
     async addUserStatistic() {
-        this.userStatistic.push(await new DataMiner().getUserStatisticData());
+        await new DataMiner().getUserStatisticData().then(userStat => {
+            this.userStatistic = [...this.userStatistic, userStat];
+        });
     }
 }

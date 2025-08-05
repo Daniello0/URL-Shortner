@@ -65,7 +65,7 @@ function App() {
                 }
             });
 
-            localStorage.setItem('urlData', JSON.stringify(dataToSave));
+            localStorage.setItem('urlData', JSON.stringify(dataToSave, null, 2));
         } catch (error) {
             console.log("Ошибка при сохранении urlData в localStorage: ", error);
         }
@@ -99,8 +99,17 @@ function App() {
     }
 
     function addUserStatisticToData(data) {
-        return async () => {
-            await data.addUserStatistic();
+        return () => {
+            const addUserStat = async () => {
+                await data.addUserStatistic();
+            }
+
+            addUserStat().then(() => {
+                removeDataFromUrlData(data);
+                addDataToUrlData(data);
+            });
+
+            window.open(data.statUrl.toString(), '_blank', 'noopener,noreferrer');
         }
     }
 
@@ -130,13 +139,14 @@ function App() {
                 return;
             }
 
+            if (urlData.find(urlData => urlData.shortUrl.toString() === data.shortUrl.toString())) {
+                console.log("Ссылка уже добавлена в таблицу");
+                setErrorMessage("Ссылка уже добавлена в таблицу");
+                return;
+            }
+
             if (data) {
                 addDataToUrlData(data);
-                // Далее - обработка данных
-                // console.log(data.url.toString());
-                // console.log(data.shortUrl.toString());
-                // console.log(data.statUrl.toString());
-                // console.log(data.userStatistic);
             }
 
             setErrorMessage('');
@@ -181,10 +191,10 @@ function App() {
                                 </a>
                             </div>
                             <div className="column-short-url">
-                                <a href={data.shortUrl.toString()} target="_blank" rel="noopener noreferrer"
+                                <div className="original-url-text" role="link"
                                    onClick={addUserStatisticToData(data)}>
                                     {data.shortUrl.toString()}
-                                </a>
+                                </div>
                             </div>
                             <div className="column-stats">
                                 <a href={data.statUrl.toString()} target="_blank" rel="noopener noreferrer"
