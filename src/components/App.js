@@ -2,6 +2,7 @@ import './App.css';
 import {useEffect, useState} from "react";
 import Data from "../models/Data";
 import LocalStorageController from "../service/LocalStorageController";
+import {data, useNavigate} from "react-router-dom";
 
 function App() {
     const [urlString, setUrlString] = useState('');
@@ -9,35 +10,14 @@ function App() {
 
     //Перед получением добавляет типы данных
     const [urlData, setUrlData] = useState(() => {
-        return LocalStorageController.getUrlDataFromLocalStorage();
+        return LocalStorageController.getUrlData();
     });
+
+    const navigate = useNavigate();
 
     // useEffect для сохранения urlDate в localStorage (перед сохранением убирает типы данных)
     useEffect(() => {
-        try {
-            const dataToSave = urlData.map(data => {
-                return {
-                    url: data.url.toString(),
-                    shortUrl: data.shortUrl.toString(),
-                    statUrl: data.statUrl.toString(),
-
-                    userStatistic: data.userStatistic.map(stat => {
-                        return {
-                            date: stat.date,
-                            ip: stat.ip,
-                            region: stat.region,
-                            browser: stat.browser,
-                            browserVersion: stat.browserVersion,
-                            os: stat.os,
-                        }
-                    })
-                }
-            });
-
-            localStorage.setItem('urlData', JSON.stringify(dataToSave, null, 2));
-        } catch (error) {
-            console.log("Ошибка при сохранении urlData в localStorage: ", error);
-        }
+        LocalStorageController.saveUrlData(urlData);
     }, [urlData]);
 
     useEffect(() => {
@@ -88,6 +68,17 @@ function App() {
         }
     }
 
+    const handleStatUrlClick = (data) => {
+        return () => {
+            navigate(`/stat${data.statUrl.pathname}`);
+        }
+    }
+
+    const betaHandleAddUrlButtonClick = async () => {
+        await handleAddUrlButtonClick();
+        console.log(urlData);
+    }
+
     const handleAddUrlButtonClick = async () => {
 
         //ДЛЯ ТЕСТИРОВАНИЯ
@@ -126,6 +117,18 @@ function App() {
         }
     }
 
+    if (urlData) {
+        urlData.sort((a, b) => {
+            if (a.shortUrl.toString() < b.shortUrl.toString()) {
+                return -1;
+            } else if (a.shortUrl.toString() > b.shortUrl.toString()) {
+                return 1;
+            } else {
+                return 0;
+            }
+        })
+    }
+
     return (
         <div className="app">
             <div className="main-container">
@@ -136,7 +139,7 @@ function App() {
                     value={urlString}
                     onChange={(e) => setUrlString(e.target.value)}
                 />
-                <button className="button" onClick={handleAddUrlButtonClick}>
+                <button className="button" onClick={betaHandleAddUrlButtonClick}>
                     Добавить
                 </button>
             </div>
@@ -165,10 +168,10 @@ function App() {
                                 </div>
                             </div>
                             <div className="column-stats">
-                                <a href={"/stat"+data.statUrl.pathname} target="_self" rel="noopener noreferrer"
+                                <div onClick={handleStatUrlClick(data)}
                                    className="stats-link">
                                     {data.statUrl.toString()}
-                                </a>
+                                </div>
                             </div>
                             <div className="column-action">
                                 <button className="delete-button" title="Удалить ссылку"

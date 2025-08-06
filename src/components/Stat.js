@@ -1,15 +1,60 @@
 import './Stat.css'
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import {useNavigate, useParams} from "react-router-dom";
+import LocalStorageController from "../service/LocalStorageController";
+import Data from "../models/Data";
 
 
-function Stat( {data } ) {
+function Stat() {
+    const navigate = useNavigate();
+
+    const { shortCode } = useParams();
+    const statUrlString = '/' + shortCode;
+
+    console.log(statUrlString);
+
+    const [data, setData] = useState(null);
 
     useEffect(() => {
-        console.log(data)
-    }, [data])
+        const allUrlData = LocalStorageController.getUrlData();
+        const statUrlPath = '/' + shortCode;
 
-    function handleButtonBackClick() {
-        window.open("/", "_self");
+        const foundData = allUrlData.find(item => item.statUrl.pathname === statUrlPath);
+
+        if (foundData) {
+            setData(foundData);
+        } else {
+            console.error("Данные для этого кода не найдены:", statUrlPath);
+        }
+    }, [shortCode]);
+
+    console.log(data);
+
+    function handleBackButtonClick() {
+        return () => {
+            navigate("/");
+        }
+    }
+
+    function handleResetButtonClick() {
+        return () => {
+            if (!data) return;
+
+            const allUrlData = LocalStorageController.getUrlData();
+            const updatedUrlData = allUrlData.map(item => {
+                if (item.shortUrl.toString() === data.shortUrl.toString()) {
+                    return new Data(item.url, item.shortUrl, item.statUrl, []);
+                }
+                return item;
+            });
+
+            LocalStorageController.saveUrlData(updatedUrlData);
+            setData(updatedUrlData.find(item => item.shortUrl.toString() === data.shortUrl.toString()));
+        }
+    }
+
+    if (!data) {
+        return <div className="stat-loading">Загрузка статистики...</div>;
     }
 
     return (
@@ -38,8 +83,9 @@ function Stat( {data } ) {
                         )
                 })}
 
-                <div className="button-back-container">
-                    <button className="button-back" onClick={() => {handleButtonBackClick()}}>Назад</button>
+                <div className="button-container">
+                    <button className="button-back" onClick={handleBackButtonClick()}>Назад</button>
+                    <button className="button-reset" onClick={handleResetButtonClick()}>Сброс</button>
                 </div>
             </div>
         </div>
