@@ -9,9 +9,6 @@ function Stat() {
     const navigate = useNavigate();
 
     const { shortCode } = useParams();
-    const statUrlString = '/' + shortCode;
-
-    console.log(statUrlString);
 
     const [data, setData] = useState(null);
 
@@ -27,8 +24,6 @@ function Stat() {
             console.error("Данные для этого кода не найдены:", statUrlPath);
         }
     }, [shortCode]);
-
-    console.log(data);
 
     function handleBackButtonClick() {
         return () => {

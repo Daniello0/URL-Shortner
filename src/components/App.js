@@ -2,7 +2,7 @@ import './App.css';
 import {useEffect, useState} from "react";
 import Data from "../models/Data";
 import LocalStorageController from "../service/LocalStorageController";
-import {data, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 function App() {
     const [urlString, setUrlString] = useState('');
@@ -76,16 +76,12 @@ function App() {
 
     const betaHandleAddUrlButtonClick = async () => {
         await handleAddUrlButtonClick();
-        console.log(urlData);
     }
 
     const handleAddUrlButtonClick = async () => {
 
-        //ДЛЯ ТЕСТИРОВАНИЯ
-        console.log(urlData);
 
         if (!validateUrlString(urlString)) {
-            console.log("Введите ссылку");
             setErrorMessage("Введите ссылку");
             return;
         }
@@ -94,13 +90,11 @@ function App() {
             const data = await Data.create(urlString);
 
             if (!validateData(data)) {
-                console.log("Не удалось создать короткую ссылку");
                 setErrorMessage("Не удалось создать короткую ссылку");
                 return;
             }
 
             if (urlData.find(urlData => urlData.shortUrl.toString() === data.shortUrl.toString())) {
-                console.log("Ссылка уже добавлена в таблицу");
                 setErrorMessage("Ссылка уже добавлена в таблицу");
                 return;
             }
