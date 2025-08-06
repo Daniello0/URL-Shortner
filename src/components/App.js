@@ -153,19 +153,19 @@ function App() {
                     return (
                         <div className="url-row url-row-layout" key={data.shortUrl.toString()}>
                             <div className="column-main-url">
-                                <a className="original-url-text" href={data.url.toString()}
+                                <a className="url-text" href={data.url.toString()}
                                    target="_blank" rel="noopener noreferrer">
                                     {data.url.toString()}
                                 </a>
                             </div>
                             <div className="column-short-url">
-                                <div className="original-url-text" role="link"
-                                   onClick={addUserStatisticToData(data)}>
+                                <div className="url-text" role="link"
+                                     onClick={addUserStatisticToData(data)}>
                                     {data.shortUrl.toString()}
                                 </div>
                             </div>
                             <div className="column-stats">
-                                <a href={"/stat"+data.statUrl.pathname} target="_blank" rel="noopener noreferrer"
+                                <a href={"/stat"+data.statUrl.pathname} target="_self" rel="noopener noreferrer"
                                    className="stats-link">
                                     {data.statUrl.toString()}
                                 </a>

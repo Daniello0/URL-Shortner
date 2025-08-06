@@ -110,18 +110,18 @@ body {
   text-align: center;
 }
 
-.column-short-url a, .original-url-text {
+.column-short-url a, .url-text {
   max-width: 300px;
   font-size: 16px;
   font-weight: 500;
   color: #296c6c;
   text-decoration: none;
 }
-.column-short-url a:hover, .original-url-text:hover {
+.column-short-url a:hover, .url-text:hover {
   text-decoration: underline;
 }
 
-.original-url-text {
+.url-text {
   cursor: pointer;
 }
 
@@ -150,7 +150,7 @@ body {
   white-space: nowrap;
 }
 
-.original-url-text {
+.url-text {
   display: block;
   max-width: 300px;
 }

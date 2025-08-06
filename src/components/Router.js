@@ -6,17 +6,13 @@ import App from "./App";
 
 function Router() {
     let localStorageData = LocalStorageController.getUrlDataFromLocalStorage()
-    let statUrlArray = [];
-    localStorageData.forEach(item => {
-        statUrlArray.push(item.statUrl);
-    })
     return (
         <div className="router">
             <Routes>
                 <Route path="/" element={<App />} />
-                {statUrlArray.map(statUrl => {
+                {localStorageData.map(data => {
                     return (
-                        <Route path={`/stat${statUrl.pathname}`} element={<Stat statUrlString={statUrl.toString()} />} />
+                        <Route path={`/stat${data.statUrl.pathname}`} element={<Stat data={data} />} />
                     )
                 })}
 

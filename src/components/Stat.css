@@ -5,14 +5,23 @@
 }
 
 .stats-container {
-    padding: 5vh 20px 0;
-    min-height: 95vh;
+    margin-top: 35px;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1000px;
+}
+
+.stat-row-layout {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.stats-container > .stat-row-layout:last-child {
+    border-bottom: none;
 }
 
 .stats-header {
-    display: flex;
     font-weight: bold;
     color: #7f8c8d;
     font-size: 14px;
@@ -22,16 +31,24 @@
     padding-bottom: 15px;
 }
 
+.stat-row {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #296c6c;
+}
+
 .column-date-stat {
     flex: 3;
 }
 
 .column-ip-stat {
-    flex: 2;
+    flex: 2.5;
 }
 
 .column-region-stat {
-    flex: 3;
+    flex: 2;
 }
 
 .column-browser-stat {
@@ -39,11 +56,31 @@
 }
 
 .column-browser-version-stat {
-    flex: 2;
+    flex: 1;
 }
 
 .column-os-stat {
     flex: 2;
     text-align: center;
+}
+
+.button-back-container {
+    display: flex;
+    margin-top: 30px;
+}
+
+.button-back {
+    padding: 8px 15px;
+
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background-color: #2980b9;
+
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+
+    white-space: nowrap;
 }
 
