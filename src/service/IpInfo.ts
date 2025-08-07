@@ -1,7 +1,7 @@
-export default class IpInfo {
-    async getIpInfo() {
+class IpInfo {
+    async getIpInfo(): Promise<object | null> {
         try {
-            const response = await fetch("https://ipinfo.io/json");
+            const response: Response = await fetch("https://ipinfo.io/json");
             if (!response.ok) {
                 console.error("Ошибка доступа к серверу");
                 return null;
@@ -14,3 +14,5 @@ export default class IpInfo {
         }
     }
 }
+
+module.exports = IpInfo;

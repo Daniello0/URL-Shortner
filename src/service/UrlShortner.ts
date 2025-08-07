@@ -1,8 +1,8 @@
-export default class UrlShortner {
-    async getShortUrlString(urlString) {
-        let apiUrl = "https://clck.ru/--";
+class UrlShortner {
+    async getShortUrlString(urlString: string): Promise<string | null> {
+        let apiUrl: string = "https://clck.ru/--";
         try {
-            const response = await fetch(apiUrl, {
+            const response: Response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -20,3 +20,5 @@ export default class UrlShortner {
         }
     }
 }
+
+module.exports = UrlShortner;

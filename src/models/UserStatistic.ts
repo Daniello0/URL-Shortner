@@ -1,13 +1,13 @@
-export default class UserStatistic {
+class UserStatistic {
 
-    date = null;
-    ip = null;
-    region = "";
-    browser = "";
-    browserVersion = "";
-    os = "";
+    date: string = "";
+    ip: string = "";
+    region: string = "";
+    browser: string = "";
+    browserVersion: string = "";
+    os: string = "";
 
-    constructor( {date, ip, region, browser, browserVersion, os} ) {
+    constructor( {date, ip, region, browser, browserVersion, os}: {date: string, ip: string, region: string, browser: string, browserVersion: string, os: string} ) {
         this.date = date || "Не определено";
         this.ip = ip || "Не определено";
         this.region = region || "Не определено";
@@ -16,7 +16,7 @@ export default class UserStatistic {
         this.os = os || "Не определено";
     }
 
-    getStatObj() {
+    getStatObj(): {date: string, ip: string, region: string, browser: string, browserVersion: string, os: string} {
         return {
             date: this.date,
             ip: this.ip,
@@ -27,3 +27,5 @@ export default class UserStatistic {
         }
     }
 }
+
+module.exports = UserStatistic;
