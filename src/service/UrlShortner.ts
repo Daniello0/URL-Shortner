@@ -1,4 +1,4 @@
-class UrlShortner {
+export default class UrlShortner {
     async getShortUrlString(urlString: string): Promise<string | null> {
         let apiUrl: string = "https://clck.ru/--";
         try {
@@ -20,5 +20,3 @@ class UrlShortner {
         }
     }
 }
-
-module.exports = UrlShortner;

@@ -1,5 +1,5 @@
-class IpInfo {
-    async getIpInfo(): Promise<object | null> {
+export default class IpInfo {
+    async getIpInfo(): Promise<{ip: string, region: string} | null> {
         try {
             const response: Response = await fetch("https://ipinfo.io/json");
             if (!response.ok) {
@@ -14,5 +14,3 @@ class IpInfo {
         }
     }
 }
-
-module.exports = IpInfo;

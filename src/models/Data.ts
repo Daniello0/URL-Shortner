@@ -1,29 +1,31 @@
 import UrlShortner from "../service/UrlShortner";
 import DataMiner from "../service/DataMiner";
+import UserStatistic from "./UserStatistic";
 
 export default class Data {
 
-    url = null;
-    shortUrl = null;
-    statUrl = null;
-    userStatistic = [];
+    url: URL | null = null;
+    shortUrl: URL | null = null;
+    statUrl: URL | null = null;
+    userStatistic: UserStatistic[] | [] = [];
 
-    constructor (originalUrl, shortUrl, statUrl, userStatistic = []) {
+    constructor (originalUrl: URL, shortUrl: URL | null, statUrl: URL, userStatistic: UserStatistic[] = []) {
         this.url = originalUrl;
         this.shortUrl = shortUrl;
         this.statUrl = statUrl;
         this.userStatistic = userStatistic;
     }
 
-    static async create(urlString) {
+    static async create(urlString: string) {
         try {
             const originalUrl = new URL(urlString);
 
             const shortner = new UrlShortner();
-            const shortUrlString = await shortner.getShortUrlString(urlString);
+            const shortUrlString: string | null = await shortner.getShortUrlString(urlString);
 
             if (!shortUrlString) {
                 console.error("Не удалось создать короткую ссылку");
+                return null;
             }
 
             const shortUrl = new URL(shortUrlString);
@@ -39,6 +41,7 @@ export default class Data {
 
     async addUserStatistic() {
         await new DataMiner().getUserStatisticData().then(userStat => {
+            if (!userStat) return;
             this.userStatistic = [...this.userStatistic, userStat];
         });
     }
