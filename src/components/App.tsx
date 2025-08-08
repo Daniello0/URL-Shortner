@@ -103,7 +103,6 @@ function App() {
             setErrorMessage('');
             setUrlString('');
         } catch (error) {
-            console.log("Не удалось создать короткую ссылку", error);
             setErrorMessage("Не удалось создать короткую ссылку");
         }
     }
