@@ -12,7 +12,7 @@ function Router() {
     })
 
     useEffect(() => {
-        const validUrlData = urlData.filter(url => url !== null);
+        const validUrlData: Data[] = urlData.filter(url => url !== null);
         LocalStorageController.saveUrlData(validUrlData);
     }, [urlData]);
 
