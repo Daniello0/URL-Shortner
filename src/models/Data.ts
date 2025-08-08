@@ -9,7 +9,7 @@ export default class Data {
     statUrl: URL | null = null;
     userStatistic: UserStatistic[] | [] = [];
 
-    constructor (originalUrl: URL, shortUrl: URL | null, statUrl: URL, userStatistic: UserStatistic[] = []) {
+    constructor (originalUrl: URL | null, shortUrl: URL | null, statUrl: URL | null, userStatistic: UserStatistic[] = []) {
         this.url = originalUrl;
         this.shortUrl = shortUrl;
         this.statUrl = statUrl;

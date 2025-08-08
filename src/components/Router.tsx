@@ -3,15 +3,17 @@ import Stat from "./Stat";
 import LocalStorageController from "../service/LocalStorageController";
 import App from "./App";
 import {useEffect, useState} from "react";
+import Data from "../models/Data";
 
 
 function Router() {
-    const [urlData] = useState(() => {
+    const [urlData] = useState<(Data | null)[]>(() => {
         return LocalStorageController.getUrlData();
     })
 
     useEffect(() => {
-        LocalStorageController.saveUrlData(urlData);
+        const validUrlData = urlData.filter(url => url !== null);
+        LocalStorageController.saveUrlData(validUrlData);
     }, [urlData]);
 
     return (

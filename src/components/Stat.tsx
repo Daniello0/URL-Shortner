@@ -1,22 +1,29 @@
-import './Stat.css'
+import "./Stat.css"
 import {useEffect, useState} from "react";
-import {useNavigate, useParams} from "react-router-dom";
+import {NavigateFunction, useNavigate, useParams} from "react-router-dom";
 import LocalStorageController from "../service/LocalStorageController";
 import Data from "../models/Data";
 
 
 function Stat() {
-    const navigate = useNavigate();
+    const navigate: NavigateFunction = useNavigate();
 
-    const { shortCode } = useParams();
+    type StatParam = {
+        shortCode: string;
+    }
+    const { shortCode } = useParams<StatParam>();
 
-    const [data, setData] = useState(null);
+    const [data, setData] = useState<Data | null>(null);
 
     useEffect(() => {
-        const allUrlData = LocalStorageController.getUrlData();
+        if (!shortCode) return;
+
+        const allUrlData: (Data | null)[] = LocalStorageController.getUrlData();
         const statUrlPath = '/' + shortCode;
 
-        const foundData = allUrlData.find(item => item.statUrl.pathname === statUrlPath);
+        const validUrlData: Data[] = allUrlData.filter((item): item is Data => item !== null);
+
+        const foundData: Data | undefined = validUrlData.find(item => item && item.statUrl && item.statUrl.pathname === statUrlPath);
 
         if (foundData) {
             setData(foundData);
@@ -35,16 +42,20 @@ function Stat() {
         return () => {
             if (!data) return;
 
-            const allUrlData = LocalStorageController.getUrlData();
-            const updatedUrlData = allUrlData.map(item => {
-                if (item.shortUrl.toString() === data.shortUrl.toString()) {
-                    return new Data(item.url, item.shortUrl, item.statUrl, []);
+            const allUrlData: (Data | null)[] = LocalStorageController.getUrlData();
+            const updatedUrlData: (Data | undefined)[] = allUrlData.map((item: Data | null) => {
+                if (item && item.shortUrl && data.shortUrl) {
+                    if (item.shortUrl.toString() === data.shortUrl.toString()) {
+                        return new Data(item.url, item.shortUrl, item.statUrl, []);
+                    }
+                    return item;
                 }
-                return item;
+                return undefined;
             });
 
-            LocalStorageController.saveUrlData(updatedUrlData);
-            setData(updatedUrlData.find(item => item.shortUrl.toString() === data.shortUrl.toString()));
+            const validUpdatedUrlData = updatedUrlData.filter((item): item is Data => item !== null);
+            LocalStorageController.saveUrlData(validUpdatedUrlData);
+            setData(validUpdatedUrlData.find(item => item.shortUrl && data.shortUrl && item.shortUrl.toString() === data.shortUrl.toString()) || null);
         }
     }
 
