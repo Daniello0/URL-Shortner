@@ -9,7 +9,7 @@ function App() {
     const [error, setErrorMessage] = useState('');
 
     //Перед получением добавляет типы данных
-    const [urlData, setUrlData] = useState<(Data | null)[]>(() => {
+    const [urlData, setUrlData] = useState<(Data)[]>(() => {
         return LocalStorageController.getUrlData();
     });
 
@@ -17,8 +17,7 @@ function App() {
 
     // useEffect для сохранения urlDate в localStorage (перед сохранением убирает типы данных)
     useEffect(() => {
-        const validateUrlData: Data[] = urlData.filter(data => data != null);
-        LocalStorageController.saveUrlData(validateUrlData);
+        LocalStorageController.saveUrlData(urlData);
     }, [urlData]);
 
     useEffect(() => {
@@ -32,8 +31,8 @@ function App() {
         return () => clearTimeout(timerId);
     }, [error]);
 
-    function validateUrlString(urlString: string): boolean {
-        return urlString !== null;
+    function validateUrlString(urlString: string) {
+        return urlString;
     }
 
     function addDataToUrlData(data: Data): void {
@@ -41,12 +40,8 @@ function App() {
     }
 
     function removeDataFromUrlData(data: Data): void {
-        setUrlData(prevState => prevState.filter((urlData: Data | null) =>
-            urlData && urlData.shortUrl && data.shortUrl && urlData.shortUrl.toString() !== data.shortUrl.toString()));
-    }
-
-    function validateData(data: Data): boolean {
-        return data !== null;
+        setUrlData(prevState => prevState.filter((urlData: Data) =>
+            urlData.shortUrl.toString() !== data.shortUrl.toString()));
     }
 
     function addUserStatisticToData(data: Data) {
@@ -93,19 +88,10 @@ function App() {
         }
 
         try {
-            const data: Data | null = await Data.create(urlString);
+            const data: Data = await Data.create(urlString);
 
-            if (!data) {
-                return null;
-            }
-
-            if (!validateData(data)) {
-                setErrorMessage("Не удалось создать короткую ссылку");
-                return;
-            }
-
-            if (urlData.find((urlData: Data | null) =>
-                urlData && urlData.shortUrl && data.shortUrl && urlData.shortUrl.toString() === data.shortUrl.toString())) {
+            if (urlData.find((urlData: Data) =>
+                urlData.shortUrl.toString() === data.shortUrl.toString())) {
                 setErrorMessage("Ссылка уже добавлена в таблицу");
                 return;
             }
@@ -123,8 +109,7 @@ function App() {
     }
 
     if (urlData) {
-        urlData.sort((a: (Data | null), b: (Data | null)) => {
-            if (a && b && a.shortUrl && b.shortUrl) {
+        urlData.sort((a: Data, b: Data) => {
                 if (a.shortUrl.toString() < b.shortUrl.toString()) {
                     return -1;
                 } else if (a.shortUrl.toString() > b.shortUrl.toString()) {
@@ -132,8 +117,6 @@ function App() {
                 } else {
                     return 0;
                 }
-            }
-            return 0;
         })
     }
 

@@ -4,28 +4,28 @@ import UserStatistic from "./UserStatistic";
 
 export default class Data {
 
-    url: URL | null = null;
-    shortUrl: URL | null = null;
-    statUrl: URL | null = null;
-    userStatistic: UserStatistic[] | [] = [];
+    url: URL;
+    shortUrl: URL;
+    statUrl: URL;
+    userStatistic: UserStatistic[] | [];
 
-    constructor (originalUrl: URL | null, shortUrl: URL | null, statUrl: URL | null, userStatistic: UserStatistic[] = []) {
+    constructor (originalUrl: URL, shortUrl: URL, statUrl: URL, userStatistic: UserStatistic[] = []) {
         this.url = originalUrl;
         this.shortUrl = shortUrl;
         this.statUrl = statUrl;
         this.userStatistic = userStatistic;
     }
 
-    static async create(urlString: string) {
+    static async create(urlString: string): Promise<Data> {
         try {
             const originalUrl = new URL(urlString);
 
             const shortner = new UrlShortner();
-            const shortUrlString: string | null = await shortner.getShortUrlString(urlString);
+            let shortUrlString: string | null = await shortner.getShortUrlString(urlString);
 
             if (!shortUrlString) {
                 console.error("Не удалось создать короткую ссылку");
-                return null;
+                shortUrlString = "";
             }
 
             const shortUrl = new URL(shortUrlString);
@@ -35,7 +35,7 @@ export default class Data {
 
         } catch (error) {
             console.error("Ошибка при создании Data-класса:", error);
-            return null; // Возвращаем null в случае ошибки
+            return new Data(new URL(""), new URL(""), new URL(""));
         }
     }
 

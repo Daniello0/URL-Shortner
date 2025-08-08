@@ -11,16 +11,16 @@ interface PlainUserStatistic {
 }
 
 interface PlainData {
-    url: string | null;
-    shortUrl: string | null;
-    statUrl: string | null;
+    url: string | "";
+    shortUrl: string | "";
+    statUrl: string | "";
     userStatistic: PlainUserStatistic[];
 }
 
 export default class LocalStorageController {
-    static getUrlData() {
+    static getUrlData(): Data[] {
         try {
-            const savedUrlDataString = localStorage.getItem('urlData');
+            const savedUrlDataString: string | null = localStorage.getItem('urlData');
 
             if (!savedUrlDataString) {
                 return [];
@@ -47,7 +47,7 @@ export default class LocalStorageController {
                         hydratedStats
                     );
                 } else {
-                    return null;
+                    return new Data(new URL(""), new URL(""), new URL(""))
                 }
             });
         } catch (error) {
