@@ -1,6 +1,6 @@
 import './App.css';
 import {useEffect, useState} from "react";
-import Data from "../models/Data";
+import Link from "../models/Link";
 import LocalStorageController from "../service/LocalStorageController";
 import {NavigateFunction, useNavigate} from "react-router-dom";
 
@@ -9,16 +9,16 @@ function App() {
     const [error, setErrorMessage] = useState('');
 
     //Перед получением добавляет типы данных
-    const [urlData, setUrlData] = useState<(Data)[]>(() => {
-        return LocalStorageController.getUrlData();
+    const [links, setLinks] = useState<(Link)[]>(() => {
+        return LocalStorageController.getLinks();
     });
 
     const navigate: NavigateFunction = useNavigate();
 
     // useEffect для сохранения urlDate в localStorage (перед сохранением убирает типы данных)
     useEffect(() => {
-        LocalStorageController.saveUrlData(urlData);
-    }, [urlData]);
+        LocalStorageController.saveLinks(links);
+    }, [links]);
 
     useEffect(() => {
         let timerId: NodeJS.Timeout | undefined;
@@ -35,24 +35,24 @@ function App() {
         return urlString;
     }
 
-    function addDataToUrlData(data: Data): void {
-        setUrlData(prevState => [...prevState, data]);
+    function addDataToLinks(data: Link): void {
+        setLinks(prevState => [...prevState, data]);
     }
 
-    function removeDataFromUrlData(data: Data): void {
-        setUrlData(prevState => prevState.filter((urlData: Data) =>
-            urlData.shortUrl.toString() !== data.shortUrl.toString()));
+    function removeDataFromLinks(data: Link): void {
+        setLinks((prevState: Link[]) => prevState.filter((link: Link) =>
+            link.shortUrl.toString() !== data.shortUrl.toString()));
     }
 
-    function addUserStatisticToData(data: Data) {
+    function addUserStatisticToData(data: Link) {
         return () => {
             const addUserStat = async () => {
                 await data.addUserStatistic();
             }
 
             addUserStat().then(() => {
-                removeDataFromUrlData(data);
-                addDataToUrlData(data);
+                removeDataFromLinks(data);
+                addDataToLinks(data);
             });
 
             if (data.statUrl) {
@@ -61,13 +61,13 @@ function App() {
         }
     }
 
-    const handleDeleteButtonPressed = (data: Data) => {
+    const handleDeleteButtonPressed = (data: Link) => {
         return () => {
-            removeDataFromUrlData(data);
+            removeDataFromLinks(data);
         }
     }
 
-    const handleStatUrlClick = (data: Data) => {
+    const handleStatUrlClick = (data: Link) => {
         return () => {
             if (data.statUrl) {
                 navigate(`/stat${data.statUrl.pathname}`);
@@ -88,16 +88,16 @@ function App() {
         }
 
         try {
-            const data: Data = await Data.create(urlString);
+            const data: Link = await Link.create(urlString);
 
-            if (urlData.find((urlData: Data) =>
-                urlData.shortUrl.toString() === data.shortUrl.toString())) {
+            if (links.find((link: Link) =>
+                link.shortUrl.toString() === data.shortUrl.toString())) {
                 setErrorMessage("Ссылка уже добавлена в таблицу");
                 return;
             }
 
             if (data) {
-                addDataToUrlData(data);
+                addDataToLinks(data);
             }
 
             setErrorMessage('');
@@ -107,8 +107,8 @@ function App() {
         }
     }
 
-    if (urlData) {
-        urlData.sort((a: Data, b: Data) => {
+    if (links) {
+        links.sort((a: Link, b: Link) => {
                 if (a.shortUrl.toString() < b.shortUrl.toString()) {
                     return -1;
                 } else if (a.shortUrl.toString() > b.shortUrl.toString()) {
@@ -142,7 +142,7 @@ function App() {
                     <div className="column-action">Действие</div>
                 </div>
 
-                {urlData.map((data) => {
+                {links.map((data) => {
                     return (
                         <div className="url-row url-row-layout" key={data.shortUrl.toString()}>
                             <div className="column-main-url">

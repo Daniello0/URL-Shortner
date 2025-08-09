@@ -2,7 +2,7 @@ import "./Stat.css"
 import {useEffect, useState} from "react";
 import {NavigateFunction, useNavigate, useParams} from "react-router-dom";
 import LocalStorageController from "../service/LocalStorageController";
-import Data from "../models/Data";
+import Link from "../models/Link";
 
 
 function Stat() {
@@ -13,20 +13,18 @@ function Stat() {
     }
     const { shortCode } = useParams<StatParam>();
 
-    const [data, setData] = useState<Data | null>(null);
+    const [link, setLink] = useState<Link | null>(null);
 
     useEffect(() => {
         if (!shortCode) return;
 
-        const allUrlData: (Data | null)[] = LocalStorageController.getUrlData();
+        const allLinks: (Link)[] = LocalStorageController.getLinks();
         const statUrlPath = '/' + shortCode;
 
-        const validUrlData: Data[] = allUrlData.filter((item): item is Data => item !== null);
+        const foundLink: Link | undefined = allLinks.find(item => item.statUrl.pathname === statUrlPath);
 
-        const foundData: Data | undefined = validUrlData.find(item => item && item.statUrl && item.statUrl.pathname === statUrlPath);
-
-        if (foundData) {
-            setData(foundData);
+        if (foundLink) {
+            setLink(foundLink);
         } else {
             console.error("Данные для этого кода не найдены:", statUrlPath);
         }
@@ -40,26 +38,22 @@ function Stat() {
 
     function handleResetButtonClick() {
         return () => {
-            if (!data) return;
+            if (!link) return;
 
-            const allUrlData: (Data | null)[] = LocalStorageController.getUrlData();
-            const updatedUrlData: (Data | undefined)[] = allUrlData.map((item: Data | null) => {
-                if (item && item.shortUrl && data.shortUrl) {
-                    if (item.shortUrl.toString() === data.shortUrl.toString()) {
-                        return new Data(item.url, item.shortUrl, item.statUrl, []);
+            const allLinks: (Link)[] = LocalStorageController.getLinks();
+            const updatedLinks: (Link)[] = allLinks.map((item: Link) => {
+                    if (item.shortUrl.toString() === link.shortUrl.toString()) {
+                        return new Link(item.url, item.shortUrl, item.statUrl, []);
                     }
                     return item;
-                }
-                return undefined;
             });
 
-            const validUpdatedUrlData = updatedUrlData.filter((item): item is Data => item !== null);
-            LocalStorageController.saveUrlData(validUpdatedUrlData);
-            setData(validUpdatedUrlData.find(item => item.shortUrl && data.shortUrl && item.shortUrl.toString() === data.shortUrl.toString()) || null);
+            LocalStorageController.saveLinks(updatedLinks);
+            setLink(updatedLinks.find((item: Link) => item.shortUrl.toString() === link.shortUrl.toString()) || null);
         }
     }
 
-    if (!data) {
+    if (!link) {
         return <div className="stat-loading">Загрузка статистики...</div>;
     }
 
@@ -76,7 +70,7 @@ function Stat() {
                     <div className="column-os-stat">ОС</div>
                 </div>
 
-                {data.userStatistic.map(statistic => {
+                {link.userStatistic.map(statistic => {
                     return (
                         <div className="stat-row stat-row-layout" key={statistic.date}>
                             <div className="column-date-stat">{statistic.date}</div>

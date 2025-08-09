@@ -1,5 +1,5 @@
 import UserStatistic from "../models/UserStatistic";
-import Data from "../models/Data";
+import Link from "../models/Link";
 
 interface PlainUserStatistic {
     date: string;
@@ -18,15 +18,15 @@ interface PlainData {
 }
 
 export default class LocalStorageController {
-    static getUrlData(): Data[] {
+    static getLinks(): Link[] {
         try {
-            const savedUrlDataString: string | null = localStorage.getItem('urlData');
+            const savedLinksString: string | null = localStorage.getItem('links');
 
-            if (!savedUrlDataString) {
+            if (!savedLinksString) {
                 return [];
             }
 
-            const plainObjectArray: PlainData[] = JSON.parse(savedUrlDataString);
+            const plainObjectArray: PlainData[] = JSON.parse(savedLinksString);
             return plainObjectArray.map((plainObj: PlainData) => {
                 const hydratedStats: UserStatistic[] = plainObj.userStatistic.map((statObj: PlainUserStatistic): UserStatistic  => {
                     return new UserStatistic({
@@ -40,26 +40,26 @@ export default class LocalStorageController {
                 });
 
                 if (plainObj.url && plainObj.shortUrl && plainObj.statUrl) {
-                    return new Data(
+                    return new Link(
                         new URL(plainObj.url),
                         new URL(plainObj.shortUrl),
                         new URL(plainObj.statUrl),
                         hydratedStats
                     );
                 } else {
-                    return new Data(new URL(""), new URL(""), new URL(""))
+                    return new Link(new URL(""), new URL(""), new URL(""))
                 }
             });
         } catch (error) {
-            console.log("Ошибка при чтении или гидратации urlData из localStorage:", error);
-            localStorage.removeItem("urlData");
+            console.log("Ошибка при чтении или гидратации links из localStorage:", error);
+            localStorage.removeItem("links");
             return [];
         }
     }
 
-    static saveUrlData(urlData: Data[]): void {
+    static saveLinks(links: Link[]): void {
         try {
-            const dataToSave: (PlainData | null)[]  = urlData.map((data: Data): PlainData | null => {
+            const dataToSave: (PlainData | null)[]  = links.map((data: Link): PlainData | null => {
                 if (!data.url || !data.shortUrl ||  !data.statUrl) {
                     return null;
                 }
@@ -82,9 +82,9 @@ export default class LocalStorageController {
                 }
             });
 
-            localStorage.setItem('urlData', JSON.stringify(dataToSave, null, 2));
+            localStorage.setItem('links', JSON.stringify(dataToSave, null, 2));
         } catch (error) {
-            console.log("Ошибка при сохранении urlData в localStorage: ", error);
+            console.log("Ошибка при сохранении links в localStorage: ", error);
         }
     }
 }

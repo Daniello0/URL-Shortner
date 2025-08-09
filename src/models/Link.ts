@@ -2,7 +2,7 @@ import UrlShortner from "../service/UrlShortner";
 import DataMiner from "../service/DataMiner";
 import UserStatistic from "./UserStatistic";
 
-export default class Data {
+export default class Link {
 
     url: URL;
     shortUrl: URL;
@@ -16,7 +16,7 @@ export default class Data {
         this.userStatistic = userStatistic;
     }
 
-    static async create(urlString: string): Promise<Data> {
+    static async create(urlString: string): Promise<Link> {
         try {
             const originalUrl = new URL(urlString);
 
@@ -31,16 +31,16 @@ export default class Data {
             const shortUrl = new URL(shortUrlString);
             const statUrl = new URL(shortUrlString + "+");
 
-            return new Data(originalUrl, shortUrl, statUrl);
+            return new Link(originalUrl, shortUrl, statUrl);
 
         } catch (error) {
             console.error("Ошибка при создании Data-класса:", error);
-            return new Data(new URL(""), new URL(""), new URL(""));
+            return new Link(new URL(""), new URL(""), new URL(""));
         }
     }
 
     async addUserStatistic() {
-        await new DataMiner().getUserStatisticData().then(userStat => {
+        await new DataMiner().getUserStatisticData().then((userStat: UserStatistic | undefined) => {
             if (!userStat) return;
             this.userStatistic = [...this.userStatistic, userStat];
         });
