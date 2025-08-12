@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43611880-061c-41a6-b014-acd72eea1fb0" name="Changes" comment="add prisma orm, configure DB">
-      <change afterPath="$PROJECT_DIR$/client/src/service/ServerController.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/addTestData.js" afterDir="false" />
+    <list default="true" id="43611880-061c-41a6-b014-acd72eea1fb0" name="Changes" comment="add connected DB, add addTestData.js (create test rows in DB), add ServerController.ts (test client-server connections)">
+      <change afterPath="$PROJECT_DIR$/server/src/DatabaseController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/server/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/service/ServerController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/service/ServerController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server.js" afterDir="false" />
@@ -77,7 +76,7 @@
     "npm.npm start.executor": "Run",
     "npm.run client.executor": "Run",
     "npm.run test.executor": "Run",
-    "ts.external.directory.path": "/Users/daniel/WebstormProjects/url-shortner/client/node_modules/typescript/lib",
+    "ts.external.directory.path": "/Users/daniel/WebstormProjects/url-shortner/server/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -174,7 +173,7 @@
       <workItem from="1754518188024" duration="3919000" />
       <workItem from="1754522396128" duration="14438000" />
       <workItem from="1754645044063" duration="19669000" />
-      <workItem from="1754981508338" duration="9195000" />
+      <workItem from="1754981508338" duration="13439000" />
     </task>
     <task id="LOCAL-00001" summary="working UrlShortner.js &amp; tests in UrlShortner.test.js">
       <option name="closed" value="true" />
@@ -424,11 +423,59 @@
       <option name="project" value="LOCAL" />
       <updated>1754985306587</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="add connected DB, add addTestData.js (create test rows in DB), add ServerController.ts (test client-server connections)">
+      <option name="closed" value="true" />
+      <created>1754992093026</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1754992093026</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/client/src/models/UserStatistic.d.ts" />
+        <option value="$PROJECT_DIR$/client/src/models/UserStatistic.d.ts.map" />
+        <option value="$PROJECT_DIR$/client/src/models/Link.js" />
+        <option value="$PROJECT_DIR$/client/src/models/UserStatistic.js.map" />
+        <option value="$PROJECT_DIR$/client/src/models/UserStatistic.js" />
+        <option value="$PROJECT_DIR$/client/src/models/Link.d.ts" />
+        <option value="$PROJECT_DIR$/client/src/models/Link.d.ts.map" />
+        <option value="$PROJECT_DIR$/client/src/models/Link.js.map" />
+        <option value="$PROJECT_DIR$/client/src/components/Router.js.map" />
+        <option value="$PROJECT_DIR$/client/src/components/Stat.js" />
+        <option value="$PROJECT_DIR$/client/src/components/App.js.map" />
+        <option value="$PROJECT_DIR$/client/src/components/Router.d.ts.map" />
+        <option value="$PROJECT_DIR$/client/src/components/App.d.ts.map" />
+        <option value="$PROJECT_DIR$/client/src/components/App.d.ts" />
+        <option value="$PROJECT_DIR$/client/src/components/Router.d.ts" />
+        <option value="$PROJECT_DIR$/client/src/components/Router.js" />
+        <option value="$PROJECT_DIR$/client/src/components/Stat.d.ts.map" />
+        <option value="$PROJECT_DIR$/client/src/components/Stat.js.map" />
+        <option value="$PROJECT_DIR$/client/src/components/App.js" />
+        <option value="$PROJECT_DIR$/client/src/components/Stat.d.ts" />
+        <option value="$PROJECT_DIR$/client/src/service/UrlShortner.js" />
+        <option value="$PROJECT_DIR$/client/src/service/LocalStorageController.js.map" />
+        <option value="$PROJECT_DIR$/client/src/service/UrlShortner.d.ts.map" />
+        <option value="$PROJECT_DIR$/client/src/service/LocalStorageController.d.ts.map" />
+        <option value="$PROJECT_DIR$/client/src/service/IpInfo.js.map" />
+        <option value="$PROJECT_DIR$/client/src/service/LocalStorageController.js" />
+        <option value="$PROJECT_DIR$/client/src/service/LocalStorageController.d.ts" />
+        <option value="$PROJECT_DIR$/client/src/service/DataMiner.js" />
+        <option value="$PROJECT_DIR$/client/src/service/IpInfo.d.ts.map" />
+        <option value="$PROJECT_DIR$/client/src/service/IpInfo.js" />
+        <option value="$PROJECT_DIR$/client/src/service/DataMiner.d.ts" />
+        <option value="$PROJECT_DIR$/client/src/service/DataMiner.js.map" />
+        <option value="$PROJECT_DIR$/client/src/service/UrlShortner.d.ts" />
+        <option value="$PROJECT_DIR$/client/src/service/IpInfo.d.ts" />
+        <option value="$PROJECT_DIR$/client/src/service/DataMiner.d.ts.map" />
+        <option value="$PROJECT_DIR$/client/src/service/UrlShortner.js.map" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -442,8 +489,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add getUserStatisticData() in DataMiner.js, update app structure" />
-    <MESSAGE value="minor update" />
     <MESSAGE value="working &quot;add url's to Data class&quot;, working on Data.addUserStatistic()" />
     <MESSAGE value="working &quot;get user statistic&quot;" />
     <MESSAGE value="add working &quot;add url data to main page (table)&quot;" />
@@ -467,6 +512,8 @@
     <MESSAGE value="Remove useless checks, refactoring names" />
     <MESSAGE value="add server, project refactoring" />
     <MESSAGE value="add prisma orm, configure DB" />
-    <option name="LAST_COMMIT_MESSAGE" value="add prisma orm, configure DB" />
+    <MESSAGE value="minor changes" />
+    <MESSAGE value="add connected DB, add addTestData.js (create test rows in DB), add ServerController.ts (test client-server connections)" />
+    <option name="LAST_COMMIT_MESSAGE" value="add connected DB, add addTestData.js (create test rows in DB), add ServerController.ts (test client-server connections)" />
   </component>
 </project>
