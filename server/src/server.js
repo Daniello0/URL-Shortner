@@ -39,6 +39,14 @@ app.post('/database/delete', (req, res) => {
     }
 });
 
+app.post('/database/addUserStatistic', (req, res) => {
+    const {shortUrlIndex} = req.body;
+    const response = DatabaseController.addUserStatisticToLink(shortUrlIndex);
+    if (response) {
+        res.send("Ответ от сервера: успешно (/database/addUserStatistic)");
+    }
+})
+
 app.get('/api/test', (req, res) => {
     res.json({ message: 'Привет от бэкенда! Все работает.' });
 });

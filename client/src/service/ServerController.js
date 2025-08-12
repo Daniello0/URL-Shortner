@@ -92,7 +92,28 @@ class ServerController {
             console.log("Ошибка сети: ", error);
         }
     }
+
+    static async addUserStatisticToLinkInDB(shortUrlIndex) {
+        console.log("Старт addUserStatisticToLinkInDB");
+        try {
+            const response = await fetch("http://localhost:3001/database/addUserStatistic", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    shortUrlIndex: shortUrlIndex,
+                })
+            });
+
+            if (response.ok) {
+                const textResponse = response.text();
+                console.log("Ответ сервера: ", textResponse);
+            }
+        } catch (error) {
+            console.log("Ошибка сети: ", error);
+        }
+    }
 }
 
-// ServerController.createLinkInDB({url: 'AHAHA', shortUrlIndex: 'LOOOL'});
-ServerController.deleteLinkFromDB({url: 'AHAHA', shortUrlIndex: 'LOOOL'});
+ServerController.addUserStatisticToLinkInDB("34FGT");
