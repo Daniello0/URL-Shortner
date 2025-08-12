@@ -70,7 +70,7 @@ class ServerController {
         }
     }
 
-    static async deleteLinkFromDB({url, shortUrlIndex}) {
+    static async deleteLinkFromDB(shortUrlIndex) {
         console.log("Старт deleteLinkFromDB");
         try {
             const response = await fetch("http://localhost:3001/database/delete", {
@@ -79,13 +79,12 @@ class ServerController {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    url: url,
                     shortUrlIndex: shortUrlIndex,
                 })
             });
 
             if (response.ok) {
-                const textResponse = response.text();
+                const textResponse = await response.text();
                 console.log("Ответ сервера: ", textResponse);
             }
         } catch (error) {
@@ -107,7 +106,29 @@ class ServerController {
             });
 
             if (response.ok) {
-                const textResponse = response.text();
+                const textResponse = await response.text();
+                console.log("Ответ сервера: ", textResponse);
+            }
+        } catch (error) {
+            console.log("Ошибка сети: ", error);
+        }
+    }
+
+    static async resetUserStatisticInLinkInDB(shortUrlIndex) {
+        console.log("Старт resetUserStatisticInLinkInDB");
+        try {
+            const response = await fetch("http://localhost:3001/database/resetUserStatistic", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    shortUrlIndex: shortUrlIndex,
+                })
+            });
+
+            if (response.ok) {
+                const textResponse = await response.text();
                 console.log("Ответ сервера: ", textResponse);
             }
         } catch (error) {
@@ -116,4 +137,4 @@ class ServerController {
     }
 }
 
-ServerController.addUserStatisticToLinkInDB("34FGT");
+ServerController.deleteLinkFromDB("34FGT");

@@ -32,8 +32,8 @@ app.get('/database/read', async (req, res) => {
 });
 
 app.post('/database/delete', (req, res) => {
-    const {url, shortUrlIndex} = req.body;
-    const response = DatabaseController.deleteLink({url, shortUrlIndex})
+    const {shortUrlIndex} = req.body;
+    const response = DatabaseController.deleteLink(shortUrlIndex)
     if (response) {
         res.send("Ответ от сервера: успешно (/database/delete)");
     }
@@ -44,6 +44,14 @@ app.post('/database/addUserStatistic', (req, res) => {
     const response = DatabaseController.addUserStatisticToLink(shortUrlIndex);
     if (response) {
         res.send("Ответ от сервера: успешно (/database/addUserStatistic)");
+    }
+});
+
+app.post('/database/resetUserStatistic', (req, res) => {
+    const {shortUrlIndex} = req.body;
+    const response = DatabaseController.resetUserStatisticInLink(shortUrlIndex);
+    if (response) {
+        res.send("Ответ от сервера: успешно (/database/resetUserStatistic)");
     }
 })
 

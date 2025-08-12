@@ -21,11 +21,10 @@ class DatabaseController {
         }
     }
 
-    static async deleteLink({url, shortUrlIndex}) {
+    static async deleteLink(shortUrlIndex) {
         try {
             await prisma.noUsersTable.deleteMany({
                 where: {
-                    url: url,
                     shortUrlIndex: shortUrlIndex
                 }
             })
@@ -67,6 +66,38 @@ class DatabaseController {
 
         } catch (error) {
             console.error(`Ошибка при добавлении статистики для ссылки "${shortUrlIndex}":`, error);
+        }
+    }
+
+    static async resetUserStatisticInLink(shortUrlIndex) {
+        try {
+            const link = await prisma.noUsersTable.findFirst({
+                where: {
+                    shortUrlIndex: shortUrlIndex
+                },
+                select: {
+                    id: true,
+                    userStatistic: true
+                }
+            });
+
+            if (!link) {
+                console.error(`Ссылка с индексом "${shortUrlIndex}" не найдена в БД.`);
+                return;
+            }
+
+            link.userStatistic = [];
+
+            await prisma.noUsersTable.update({
+                where: {
+                    id: link.id
+                },
+                data: {
+                    userStatistic: link.userStatistic
+                }
+            });
+        } catch (error) {
+            console.error(`Ошибка при сбросе статистики для ссылки "${shortUrlIndex}":`, error);
         }
     }
 

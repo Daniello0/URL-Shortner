@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43611880-061c-41a6-b014-acd72eea1fb0" name="Changes" comment="add @types/node, add func create() in ServerController.js, add DatabaseController.js">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/userStatisticModules/DataMiner.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/userStatisticModules/IpInfo.js" afterDir="false" />
+    <list default="true" id="43611880-061c-41a6-b014-acd72eea1fb0" name="Changes" comment="add addUserStatisticToLinkInDB func">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/service/ServerController.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/service/ServerController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/DatabaseController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/DatabaseController.js" afterDir="false" />
@@ -440,7 +437,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755000561398</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="add addUserStatisticToLinkInDB func">
+      <option name="closed" value="true" />
+      <created>1755012852739</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1755012852739</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,7 +503,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="working &quot;get user statistic&quot;" />
     <MESSAGE value="add working &quot;add url data to main page (table)&quot;" />
     <MESSAGE value="Some design changes," />
     <MESSAGE value="Some design changes, add delete-url func" />
@@ -523,6 +527,7 @@
     <MESSAGE value="minor changes" />
     <MESSAGE value="add connected DB, add addTestData.js (create test rows in DB), add ServerController.ts (test client-server connections)" />
     <MESSAGE value="add @types/node, add func create() in ServerController.js, add DatabaseController.js" />
-    <option name="LAST_COMMIT_MESSAGE" value="add @types/node, add func create() in ServerController.js, add DatabaseController.js" />
+    <MESSAGE value="add addUserStatisticToLinkInDB func" />
+    <option name="LAST_COMMIT_MESSAGE" value="add addUserStatisticToLinkInDB func" />
   </component>
 </project>
