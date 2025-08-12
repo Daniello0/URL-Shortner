@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43611880-061c-41a6-b014-acd72eea1fb0" name="Changes" comment="add connected DB, add addTestData.js (create test rows in DB), add ServerController.ts (test client-server connections)">
-      <change afterPath="$PROJECT_DIR$/server/src/DatabaseController.js" afterDir="false" />
+    <list default="true" id="43611880-061c-41a6-b014-acd72eea1fb0" name="Changes" comment="add @types/node, add func create() in ServerController.js, add DatabaseController.js">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/service/ServerController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/service/ServerController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/service/ServerController.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/service/ServerController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/DatabaseController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/DatabaseController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -173,7 +171,7 @@
       <workItem from="1754518188024" duration="3919000" />
       <workItem from="1754522396128" duration="14438000" />
       <workItem from="1754645044063" duration="19669000" />
-      <workItem from="1754981508338" duration="13439000" />
+      <workItem from="1754981508338" duration="16360000" />
     </task>
     <task id="LOCAL-00001" summary="working UrlShortner.js &amp; tests in UrlShortner.test.js">
       <option name="closed" value="true" />
@@ -431,7 +429,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754992093026</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="add @types/node, add func create() in ServerController.js, add DatabaseController.js">
+      <option name="closed" value="true" />
+      <created>1755000561398</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1755000561398</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -489,7 +495,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="working &quot;add url's to Data class&quot;, working on Data.addUserStatistic()" />
     <MESSAGE value="working &quot;get user statistic&quot;" />
     <MESSAGE value="add working &quot;add url data to main page (table)&quot;" />
     <MESSAGE value="Some design changes," />
@@ -514,6 +519,7 @@
     <MESSAGE value="add prisma orm, configure DB" />
     <MESSAGE value="minor changes" />
     <MESSAGE value="add connected DB, add addTestData.js (create test rows in DB), add ServerController.ts (test client-server connections)" />
-    <option name="LAST_COMMIT_MESSAGE" value="add connected DB, add addTestData.js (create test rows in DB), add ServerController.ts (test client-server connections)" />
+    <MESSAGE value="add @types/node, add func create() in ServerController.js, add DatabaseController.js" />
+    <option name="LAST_COMMIT_MESSAGE" value="add @types/node, add func create() in ServerController.js, add DatabaseController.js" />
   </component>
 </project>

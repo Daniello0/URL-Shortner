@@ -17,12 +17,27 @@ app.post('/database/test', (req, res) => {
 
 app.post('/database/create', (req, res) => {
     const { url, shortUrlIndex } = req.body;
-    const response = DatabaseController.create({ url, shortUrlIndex });
+    const response = DatabaseController.createLink({ url, shortUrlIndex });
     if (response) {
         res.send("Ответ от сервера: успешно (/database/create)");
     }
 
-})
+});
+
+app.get('/database/read', async (req, res) => {
+    const response = await DatabaseController.readLinks();
+    if (response) {
+        res.json(response);
+    }
+});
+
+app.post('/database/delete', (req, res) => {
+    const {url, shortUrlIndex} = req.body;
+    const response = DatabaseController.deleteLink({url, shortUrlIndex})
+    if (response) {
+        res.send("Ответ от сервера: успешно (/database/delete)");
+    }
+});
 
 app.get('/api/test', (req, res) => {
     res.json({ message: 'Привет от бэкенда! Все работает.' });
