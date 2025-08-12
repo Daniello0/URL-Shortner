@@ -4,46 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43611880-061c-41a6-b014-acd72eea1fb0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server/server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/url-shortner.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/client/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/logo192.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/logo192.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/logo512.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/logo512.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/robots.txt" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/robots.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Router.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Stat.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Stat.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Stat.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Stat.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/declarations.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/declarations.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/logo.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Link.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/models/Link.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/UserStatistic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/models/UserStatistic.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reportWebVitals.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/reportWebVitals.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/DataMiner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/service/DataMiner.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/IpInfo.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/service/IpInfo.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/LocalStorageController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/service/LocalStorageController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/UrlShortner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/service/UrlShortner.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setupTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/setupTests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/App.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/DataMiner.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/DataMiner.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/ParsingData.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/ParsingData.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/UrlShortner.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/UrlShortner.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/tsconfig.json" afterDir="false" />
+    <list default="true" id="43611880-061c-41a6-b014-acd72eea1fb0" name="Changes" comment="add prisma orm, configure DB">
+      <change afterPath="$PROJECT_DIR$/client/src/service/ServerController.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/addTestData.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/server/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,41 +59,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;TypeScript&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/daniel/WebstormProjects/url-shortner&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;/Users/daniel/Library/Application Support/JetBrains/WebStorm2025.1/node/versions/22.17.0/bin/node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.npm start.executor&quot;: &quot;Run&quot;,
-    &quot;npm.run test.executor&quot;: &quot;Run&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/daniel/WebstormProjects/url-shortner/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "TypeScript",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/Users/daniel/WebstormProjects/url-shortner/server",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "/Users/daniel/Library/Application Support/JetBrains/WebStorm2025.1/node/versions/22.17.0/bin/node",
+    "nodejs_package_manager_path": "npm",
+    "npm.npm start.executor": "Run",
+    "npm.run client.executor": "Run",
+    "npm.run test.executor": "Run",
+    "ts.external.directory.path": "/Users/daniel/WebstormProjects/url-shortner/client/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server/src" />
       <recent name="$PROJECT_DIR$/client" />
       <recent name="$PROJECT_DIR$/src/service" />
       <recent name="$PROJECT_DIR$/src/models" />
       <recent name="$PROJECT_DIR$/src/components" />
-      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.run test">
+  <component name="RunManager" selected="npm.run client">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
       <method v="2" />
     </configuration>
-    <configuration name="npm start" type="js.build_tools.npm">
+    <configuration name="run client" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/client/package.json" />
       <command value="run" />
       <scripts>
@@ -145,7 +117,7 @@
     <list>
       <item itemvalue="JavaScript Debug.Debug Application" />
       <item itemvalue="npm.run test" />
-      <item itemvalue="npm.npm start" />
+      <item itemvalue="npm.run client" />
     </list>
   </component>
   <component name="SharedIndexes">
@@ -202,6 +174,7 @@
       <workItem from="1754518188024" duration="3919000" />
       <workItem from="1754522396128" duration="14438000" />
       <workItem from="1754645044063" duration="19669000" />
+      <workItem from="1754981508338" duration="9195000" />
     </task>
     <task id="LOCAL-00001" summary="working UrlShortner.js &amp; tests in UrlShortner.test.js">
       <option name="closed" value="true" />
@@ -435,7 +408,23 @@
       <option name="project" value="LOCAL" />
       <updated>1754745132234</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="add server, project refactoring">
+      <option name="closed" value="true" />
+      <created>1754983060849</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1754983060849</updated>
+    </task>
+    <task id="LOCAL-00031" summary="add prisma orm, configure DB">
+      <option name="closed" value="true" />
+      <created>1754985306587</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1754985306587</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -453,8 +442,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add ua-parser-js module, test UAParser" />
-    <MESSAGE value="add IpInfo class and &quot;get ip&quot; method, tests" />
     <MESSAGE value="add getUserStatisticData() in DataMiner.js, update app structure" />
     <MESSAGE value="minor update" />
     <MESSAGE value="working &quot;add url's to Data class&quot;, working on Data.addUserStatistic()" />
@@ -478,6 +465,8 @@
     <MESSAGE value="refactor Router.tsx, start refactoring App.tsx" />
     <MESSAGE value="refactoring" />
     <MESSAGE value="Remove useless checks, refactoring names" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove useless checks, refactoring names" />
+    <MESSAGE value="add server, project refactoring" />
+    <MESSAGE value="add prisma orm, configure DB" />
+    <option name="LAST_COMMIT_MESSAGE" value="add prisma orm, configure DB" />
   </component>
 </project>
