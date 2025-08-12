@@ -10,10 +10,6 @@ app.get('/api/test', (req, res) => {
     res.json({ message: 'Привет от бэкенда! Все работает.' });
 });
 
-app.post('/api/create-short-url', (req, res) => {
-
-})
-
 app.listen(PORT, () => {
     console.log(`Бэкенд-сервер запущен на http://localhost:${PORT}`);
 });
