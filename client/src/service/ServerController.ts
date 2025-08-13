@@ -1,14 +1,6 @@
 import Link from "../models/Link";
 import UserStatistic, {UserStatisticInterface} from "../models/UserStatistic";
-
-interface PlainUserStatistic {
-    date: string;
-    ip: string;
-    region: string;
-    browser: string;
-    browserVersion: string;
-    os: string;
-}
+import {PlainLink, PlainUserStatistic} from "../interfaces/Interfaces";
 
 export default class ServerController {
     static async testPostToServer() {
@@ -74,8 +66,7 @@ export default class ServerController {
 
             if (response.ok) {
                 const links: {url: string, shortUrlIndex: string, userStatistic: PlainUserStatistic[]}[] = await response.json();
-                console.log("Полученные данные на клиенте: ", links);
-                return this.hydrate(links);
+                return this.hydrateLinks(links);
             } else {
                 return [];
             }
@@ -85,7 +76,7 @@ export default class ServerController {
         }
     }
 
-    static async getLinkFromDB(shortUrlIndex: string) {
+    static async getHydratedLinkFromDB(shortUrlIndex: string): Promise<Link | undefined> {
         console.log("Старт getLinkFromDB");
         try {
             const response = await fetch("http://localhost:3001/database/readOne", {
@@ -99,9 +90,9 @@ export default class ServerController {
             });
 
             if (response.ok) {
-                const link = await response.json();
-                console.log("Полученные данные на клиенте: ", link);
-            }
+                const link: PlainLink = await response.json();
+                return this.hydrateLink(link);
+            } else return new Link(new URL(""), "");
         } catch (error) {
             console.log("Ошибка сети: ", error);
         }
@@ -174,12 +165,12 @@ export default class ServerController {
         }
     }
 
-    static hydrate(links: {url: string, shortUrlIndex: string, userStatistic: PlainUserStatistic[]}[]): Link[] {
+    static hydrateLinks(links: {url: string, shortUrlIndex: string, userStatistic: PlainUserStatistic[]}[]): Link[] {
         return links.map((link: {url: string, shortUrlIndex: string, userStatistic: PlainUserStatistic[]}) => {
             return new Link(
                 new URL(link.url),
                 link.shortUrlIndex,
-                link.userStatistic.map((stat) => {
+                link.userStatistic.map((stat: PlainUserStatistic) => {
                     return new UserStatistic({
                         date: stat.date,
                         ip: stat.ip,
@@ -192,4 +183,22 @@ export default class ServerController {
             );
         });
     }
+
+    static hydrateLink(link: PlainLink) {
+        return new Link(
+            new URL(link.url),
+            link.shortUrlIndex,
+            link.userStatistic.map((stat: PlainUserStatistic) => {
+                return new UserStatistic({
+                    date: stat.date,
+                    ip: stat.ip,
+                    region: stat.region,
+                    browser: stat.browser,
+                    browserVersion: stat.browserVersion,
+                    os: stat.os
+                })
+            })
+        );
+    }
+
 }

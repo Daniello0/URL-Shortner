@@ -10,7 +10,7 @@ interface PlainUserStatistic {
     os: string;
 }
 
-interface PlainData {
+interface PlainLink {
     url: string | "";
     shortUrlIndex: string | "";
     userStatistic: PlainUserStatistic[];
@@ -25,8 +25,8 @@ export default class LocalStorageController {
                 return [];
             }
 
-            const plainObjectArray: PlainData[] = JSON.parse(savedLinksString);
-            return plainObjectArray.map((plainObj: PlainData) => {
+            const plainObjectArray: PlainLink[] = JSON.parse(savedLinksString);
+            return plainObjectArray.map((plainObj: PlainLink) => {
                 const hydratedStats: UserStatistic[] = plainObj.userStatistic.map((statObj: PlainUserStatistic): UserStatistic  => {
                     return new UserStatistic({
                         date: statObj.date,
@@ -57,7 +57,7 @@ export default class LocalStorageController {
 
     static saveLinks(links: Link[]): void {
         try {
-            const dataToSave: (PlainData | null)[]  = links.map((data: Link): PlainData | null => {
+            const dataToSave: (PlainLink | null)[]  = links.map((data: Link): PlainLink | null => {
                 if (!data.url || !data.shortUrlIndex) {
                     return null;
                 }

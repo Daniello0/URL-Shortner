@@ -179,15 +179,16 @@ function App() {
                                 </a>
                             </div>
                             <div className="column-short-url">
-                                <div className="url-text" role="link"
-                                     onClick={addUserStatisticToData(data)}>
-                                    {data.shortUrlIndex}
-                                </div>
+                                <a className="url-text" role="link"
+                                   href={window.location.origin + "/" + data.shortUrlIndex}
+                                   target="_blank" rel="noopener,noreferrer">
+                                    {window.location.origin + "/" + data.shortUrlIndex}
+                                </a>
                             </div>
                             <div className="column-stats">
                                 <div onClick={handleStatUrlClick(data)}
                                    className="stats-link">
-                                    {data.shortUrlIndex}
+                                    {window.location.origin + "/stat/" + data.shortUrlIndex}
                                 </div>
                             </div>
                             <div className="column-action">

@@ -3,6 +3,8 @@ import {useEffect, useState} from "react";
 import {NavigateFunction, useNavigate, useParams} from "react-router-dom";
 import LocalStorageController from "../service/LocalStorageController";
 import Link from "../models/Link";
+import ServerController from "../service/ServerController";
+import {PlainLink} from "../interfaces/Interfaces";
 
 
 function Stat() {
@@ -18,15 +20,24 @@ function Stat() {
     useEffect(() => {
         if (!shortCode) return;
 
-        const allLinks: (Link)[] = LocalStorageController.getLinks();
+        // const allLinks: (Link)[] = LocalStorageController.getLinks();
+        //
+        // const foundLink: Link | undefined = allLinks.find(item => item.shortUrlIndex === shortCode);
+        //
+        // if (foundLink) {
+        //     setLink(foundLink);
+        // } else {
+        //     console.error("Данные для этого кода не найдены:", shortCode);
+        // }
 
-        const foundLink: Link | undefined = allLinks.find(item => item.shortUrlIndex === shortCode);
-
-        if (foundLink) {
-            setLink(foundLink);
-        } else {
-            console.error("Данные для этого кода не найдены:", shortCode);
-        }
+        ServerController.getHydratedLinkFromDB(shortCode).then((link: Link | undefined) => {
+            if (link) {
+                setLink(link);
+                console.log(link);
+            } else {
+                console.log("Не удалось получить ссылку ", link);
+            }
+        });
     }, [shortCode]);
 
     function handleBackButtonClick() {

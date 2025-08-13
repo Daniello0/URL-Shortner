@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43611880-061c-41a6-b014-acd72eea1fb0" name="Changes" comment="replace localStorage to Server&amp;DB in App.js, start working on addUserStatistic">
-      <change afterPath="$PROJECT_DIR$/server/src/ShortUrlIndexGenerator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
+    <list default="true" id="43611880-061c-41a6-b014-acd72eea1fb0" name="Changes" comment="add and connect short url index generator">
+      <change afterPath="$PROJECT_DIR$/client/src/interfaces/Interfaces.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/models/Link.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/models/Link.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/service/UrlShortner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/service/ShortUrlIndex.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/test/UrlShortner.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/test/UrlShortner.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/DatabaseController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/DatabaseController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Stat.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Stat.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/service/LocalStorageController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/service/LocalStorageController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/service/ServerController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/service/ServerController.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +22,8 @@
       <list>
         <option value="CSS File" />
         <option value="TypeScript JSX File" />
-        <option value="TypeScript File" />
         <option value="JavaScript File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -177,7 +174,7 @@
       <workItem from="1754522396128" duration="14438000" />
       <workItem from="1754645044063" duration="19669000" />
       <workItem from="1754981508338" duration="16360000" />
-      <workItem from="1755071401229" duration="16000000" />
+      <workItem from="1755071401229" duration="18408000" />
     </task>
     <task id="LOCAL-00001" summary="working UrlShortner.js &amp; tests in UrlShortner.test.js">
       <option name="closed" value="true" />
@@ -491,7 +488,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755083100829</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="add and connect short url index generator">
+      <option name="closed" value="true" />
+      <created>1755093565811</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1755093565811</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -509,7 +514,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add working addUserStatisticToData() function" />
     <MESSAGE value="add , minor updates." />
     <MESSAGE value="repair addUserStatisticToData() func, fix addUserStatistic(),working adding UserStatistic, minor updates." />
     <MESSAGE value="add Router.js &amp; Stat page, use &quot;react-router-dom&quot; lib, add page transition" />
@@ -534,6 +538,7 @@
     <MESSAGE value="updates in class Link &amp; others" />
     <MESSAGE value="add hydrate func in ServerController.ts, convert ServerController to TS" />
     <MESSAGE value="replace localStorage to Server&amp;DB in App.js, start working on addUserStatistic" />
-    <option name="LAST_COMMIT_MESSAGE" value="replace localStorage to Server&amp;DB in App.js, start working on addUserStatistic" />
+    <MESSAGE value="add and connect short url index generator" />
+    <option name="LAST_COMMIT_MESSAGE" value="add and connect short url index generator" />
   </component>
 </project>
