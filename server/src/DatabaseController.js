@@ -111,6 +111,19 @@ class DatabaseController {
         }
     }
 
+    static async existShortUrlIndex(shortUrlIndex) {
+        try {
+            const link = await prisma.noUsersTable.findFirst({
+                where: {
+                    shortUrlIndex: shortUrlIndex
+                }
+            });
+
+            return !!link;
+        } catch (error) {
+            console.log("Ошибка сети: ", error);
+        }
+    }
 }
 
 module.exports = DatabaseController;

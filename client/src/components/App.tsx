@@ -123,12 +123,6 @@ function App() {
         try {
             const data: Link = await Link.create(urlString);
 
-            if (links.find((link: Link) =>
-                link.shortUrlIndex === data.shortUrlIndex)) {
-                setErrorMessage("Ссылка уже добавлена в таблицу");
-                return;
-            }
-
             if (data) {
                 await addDataToLinks(data);
             }

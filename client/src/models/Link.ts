@@ -1,4 +1,4 @@
-import UrlShortner from "../service/UrlShortner";
+import ShortUrlIndex from "../service/ShortUrlIndex";
 import DataMiner from "../service/DataMiner";
 import UserStatistic from "./UserStatistic";
 
@@ -18,18 +18,12 @@ export default class Link {
         try {
             const originalUrl = new URL(urlString);
 
-            const shortner = new UrlShortner();
-            let shortUrlIndex: string | null = await shortner.getShortUrlIndex(urlString);
-
-            if (!shortUrlIndex) {
-                console.error("Не удалось создать короткую ссылку");
-                shortUrlIndex = "";
-            }
+            let shortUrlIndex: string = await ShortUrlIndex.getShortUrlIndex();
 
             return new Link(originalUrl, shortUrlIndex);
 
         } catch (error) {
-            console.error("Ошибка при создании Link-класса:", error);
+            // console.error("Ошибка при создании Link-класса:", error);
             return new Link(new URL(""), "");
         }
     }

@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const DatabaseController = require("./DatabaseController");
+const ShortUrlIndexGenerator = require("./ShortUrlIndexGenerator");
 const app = express();
 const PORT = 3001;
 
@@ -61,6 +62,22 @@ app.post('/database/resetUserStatistic', (req, res) => {
     if (response) {
         res.send("Ответ от сервера: успешно (/database/resetUserStatistic)");
     }
+});
+
+app.get('/generate/shortUrlIndex', (req, res) => {
+    const iteration = async () => {
+        const index = ShortUrlIndexGenerator.getRandomShortIndex();
+        const isDuplicate = await DatabaseController.existShortUrlIndex(index);
+        if (!isDuplicate) {
+            return index;
+        } else {
+            return iteration();
+        }
+    }
+
+    iteration().then((index) => {
+        res.send(index);
+    });
 })
 
 app.get('/api/test', (req, res) => {

@@ -1,10 +1,8 @@
-import UrlShortner from "../service/UrlShortner";
+import ShortUrlIndex from "../service/ShortUrlIndex";
 
-describe('UrlShortner', () => {
+describe('ShortUrl', () => {
     test('Получить короткую ссылку', async () => {
-        const longUrl = "https://www.desmos.com/calculator?lang=ru";
-        let shortner = new UrlShortner();
-        const shortUrl = await shortner.getShortUrlIndex(longUrl);
+        const shortUrl = await ShortUrlIndex.getShortUrlIndex();
         console.log(shortUrl);
     })
 })
