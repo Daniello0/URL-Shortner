@@ -1,5 +1,5 @@
 import Link from "../models/Link";
-import UserStatistic from "../models/UserStatistic";
+import UserStatistic, {UserStatisticInterface} from "../models/UserStatistic";
 
 interface PlainUserStatistic {
     date: string;
@@ -62,10 +62,10 @@ export default class ServerController {
         }
     }
 
-    static async getHydratedLinksFromDB(): Promise<Link[] | undefined> {
+    static async getHydratedLinksFromDB(): Promise<Link[]> {
         console.log("Старт getLinksFromDB");
         try {
-            const response = await fetch("http://localhost:3001/database/readAll", {
+            const response: Response = await fetch("http://localhost:3001/database/readAll", {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -73,12 +73,15 @@ export default class ServerController {
             });
 
             if (response.ok) {
-                const links = await response.json();
+                const links: {url: string, shortUrlIndex: string, userStatistic: PlainUserStatistic[]}[] = await response.json();
                 console.log("Полученные данные на клиенте: ", links);
                 return this.hydrate(links);
+            } else {
+                return [];
             }
         } catch (error) {
             console.log("Ошибка сети: ", error);
+            return [];
         }
     }
 
@@ -126,7 +129,7 @@ export default class ServerController {
         }
     }
 
-    static async addUserStatisticToLinkInDB(shortUrlIndex: string) {
+    static async addUserStatisticToLinkInDB(shortUrlIndex: string, userStatisticToAdd: UserStatisticInterface) {
         console.log("Старт addUserStatisticToLinkInDB");
         try {
             const response = await fetch("http://localhost:3001/database/addUserStatistic", {
@@ -136,6 +139,7 @@ export default class ServerController {
                 },
                 body: JSON.stringify({
                     shortUrlIndex: shortUrlIndex,
+                    userStatistic: userStatisticToAdd
                 })
             });
 

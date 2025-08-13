@@ -1,4 +1,4 @@
-interface UserStatisticInterface {
+export interface UserStatisticInterface {
     date: string;
     ip: string;
     region: string;

@@ -4,6 +4,8 @@ import Link from "../models/Link";
 import LocalStorageController from "../service/LocalStorageController";
 import {NavigateFunction, useNavigate} from "react-router-dom";
 import ServerController from "../service/ServerController";
+import DataMiner from "../service/DataMiner";
+import UserStatistic from "../models/UserStatistic";
 
 function App() {
     const [urlString, setUrlString] = useState('');
@@ -11,7 +13,13 @@ function App() {
 
     //Перед получением добавляет типы данных
     const [links, setLinks] = useState<(Link)[]>(() => {
-        return ServerController.getHydratedLinksFromDB();
+        const getLinks = async () => {
+            return await ServerController.getHydratedLinksFromDB();
+        };
+        getLinks().then((links: Link[]) => {
+            setLinks(links);
+        });
+        return [];
     });
 
     const navigate: NavigateFunction = useNavigate();
@@ -36,17 +44,23 @@ function App() {
         return urlString;
     }
 
-    function addDataToLinks(data: Link): void {
-        setLinks(prevState => [...prevState, data]);
+    async function addDataToLinks(data: Link): Promise<void> {
+        await ServerController.createLinkInDB({url: data.url.toString(), shortUrlIndex: data.shortUrlIndex});
+        setLinks(links => [...links, data]);
+        // setLinks(prevState => [...prevState, data]);
     }
 
-    function removeDataFromLinks(data: Link): void {
+    async function removeDataFromLinks(data: Link): Promise<void> {
+        await ServerController.deleteLinkFromDB(data.shortUrlIndex);
         setLinks((prevState: Link[]) => prevState.filter((link: Link) =>
             link.shortUrlIndex !== data.shortUrlIndex));
     }
 
     function addUserStatisticToData(data: Link) {
         return () => {
+
+        }
+        /*return () => {
             const addUserStat = async () => {
                 await data.addUserStatistic();
             }
@@ -59,12 +73,32 @@ function App() {
             if (data.shortUrlIndex) {
                 window.open(data.shortUrlIndex, '_blank', 'noopener,noreferrer');
             }
-        }
+        }*/
+
+        /*return async () => {
+            let newUserStatistic = new UserStatistic({ip: "Не определено", date: "Не определено", os: "Не определено",
+                browser: "Не определено", browserVersion: "Не определено", region: "Не определено"});
+            await new DataMiner().getUserStatisticData().then((userStat: UserStatistic | undefined) => {
+                if (!userStat) {
+                    return;
+                }
+                newUserStatistic.ip = userStat?.ip || "";
+                newUserStatistic.browser = userStat?.browser || "";
+                newUserStatistic.browserVersion = userStat?.browserVersion || "";
+                newUserStatistic.os = userStat?.os || "";
+                newUserStatistic.region = userStat?.region || "";
+                newUserStatistic.date = userStat?.date || "";
+            });
+            await ServerController.addUserStatisticToLinkInDB(data.shortUrlIndex, newUserStatistic);
+            if (data.shortUrlIndex) {
+                window.open(data.shortUrlIndex, '_blank', 'noopener,noreferrer');
+            }
+        }*/
     }
 
     const handleDeleteButtonPressed = (data: Link) => {
-        return () => {
-            removeDataFromLinks(data);
+        return async () => {
+            await removeDataFromLinks(data);
         }
     }
 
@@ -96,7 +130,7 @@ function App() {
             }
 
             if (data) {
-                addDataToLinks(data);
+                await addDataToLinks(data);
             }
 
             setErrorMessage('');

@@ -45,7 +45,7 @@ class DatabaseController {
         }
     }
 
-    static async addUserStatisticToLink(shortUrlIndex) {
+    static async addUserStatisticToLink(shortUrlIndex, userStatisticToAdd) {
         try {
             const link = await prisma.noUsersTable.findFirst({
                 where: {
@@ -62,10 +62,8 @@ class DatabaseController {
                 return;
             }
 
-            const newStatisticEntry = await DataMiner.getUserStatisticData();
-
             const currentStatistics = Array.isArray(link.userStatistic) ? link.userStatistic : [];
-            const updatedStatistic = [...currentStatistics, newStatisticEntry];
+            const updatedStatistic = [...currentStatistics, userStatisticToAdd];
 
             await prisma.noUsersTable.update({
                 where: {

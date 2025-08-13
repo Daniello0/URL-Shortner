@@ -16,9 +16,9 @@ class DataMiner {
                 date: now.toLocaleString(),
                 ip: ipData.ip,
                 region: ipData.region,
-                browser: uaData.browser.name,
-                browserVersion: uaData.browser.version,
-                os: uaData.os.name
+                browser: uaData.browser.name || "Не определено",
+                browserVersion: uaData.browser.version || "Не определено",
+                os: uaData.os.name || "Не определено"
             };
         }
     }
