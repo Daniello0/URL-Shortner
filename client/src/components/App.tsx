@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import Link from "../models/Link";
 import LocalStorageController from "../service/LocalStorageController";
 import {NavigateFunction, useNavigate} from "react-router-dom";
+import ServerController from "../service/ServerController";
 
 function App() {
     const [urlString, setUrlString] = useState('');
@@ -10,7 +11,7 @@ function App() {
 
     //Перед получением добавляет типы данных
     const [links, setLinks] = useState<(Link)[]>(() => {
-        return LocalStorageController.getLinks();
+        return ServerController.getHydratedLinksFromDB();
     });
 
     const navigate: NavigateFunction = useNavigate();

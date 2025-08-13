@@ -1,4 +1,16 @@
-class ServerController {
+import Link from "../models/Link";
+import UserStatistic from "../models/UserStatistic";
+
+interface PlainUserStatistic {
+    date: string;
+    ip: string;
+    region: string;
+    browser: string;
+    browserVersion: string;
+    os: string;
+}
+
+export default class ServerController {
     static async testPostToServer() {
         console.log("Формирование запроса на сервер");
         try {
@@ -27,7 +39,7 @@ class ServerController {
         }
     }
 
-    static async createLinkInDB({url, shortUrlIndex}) {
+    static async createLinkInDB({url, shortUrlIndex}: {url: string, shortUrlIndex: string}) {
         console.log("Старт createLinkInDB()");
         try {
             const response = await fetch("http://localhost:3001/database/create", {
@@ -50,7 +62,7 @@ class ServerController {
         }
     }
 
-    static async getLinksFromDB() {
+    static async getHydratedLinksFromDB(): Promise<Link[] | undefined> {
         console.log("Старт getLinksFromDB");
         try {
             const response = await fetch("http://localhost:3001/database/readAll", {
@@ -63,14 +75,14 @@ class ServerController {
             if (response.ok) {
                 const links = await response.json();
                 console.log("Полученные данные на клиенте: ", links);
-                console.log("Часть данных: ", links[0].url);
+                return this.hydrate(links);
             }
         } catch (error) {
             console.log("Ошибка сети: ", error);
         }
     }
 
-    static async getLinkFromDB(shortUrlIndex) {
+    static async getLinkFromDB(shortUrlIndex: string) {
         console.log("Старт getLinkFromDB");
         try {
             const response = await fetch("http://localhost:3001/database/readOne", {
@@ -92,7 +104,7 @@ class ServerController {
         }
     }
 
-    static async deleteLinkFromDB(shortUrlIndex) {
+    static async deleteLinkFromDB(shortUrlIndex: string) {
         console.log("Старт deleteLinkFromDB");
         try {
             const response = await fetch("http://localhost:3001/database/delete", {
@@ -114,7 +126,7 @@ class ServerController {
         }
     }
 
-    static async addUserStatisticToLinkInDB(shortUrlIndex) {
+    static async addUserStatisticToLinkInDB(shortUrlIndex: string) {
         console.log("Старт addUserStatisticToLinkInDB");
         try {
             const response = await fetch("http://localhost:3001/database/addUserStatistic", {
@@ -136,7 +148,7 @@ class ServerController {
         }
     }
 
-    static async resetUserStatisticInLinkInDB(shortUrlIndex) {
+    static async resetUserStatisticInLinkInDB(shortUrlIndex: string) {
         console.log("Старт resetUserStatisticInLinkInDB");
         try {
             const response = await fetch("http://localhost:3001/database/resetUserStatistic", {
@@ -157,7 +169,23 @@ class ServerController {
             console.log("Ошибка сети: ", error);
         }
     }
-}
 
-await ServerController.createLinkInDB({url: "https://www.youtube.com", shortUrlIndex: "YT123"});
-await ServerController.getLinkFromDB("YT123");
+    static hydrate(links: {url: string, shortUrlIndex: string, userStatistic: PlainUserStatistic[]}[]): Link[] {
+        return links.map((link: {url: string, shortUrlIndex: string, userStatistic: PlainUserStatistic[]}) => {
+            return new Link(
+                new URL(link.url),
+                link.shortUrlIndex,
+                link.userStatistic.map((stat) => {
+                    return new UserStatistic({
+                        date: stat.date,
+                        ip: stat.ip,
+                        region: stat.region,
+                        browser: stat.browser,
+                        browserVersion: stat.browserVersion,
+                        os: stat.os
+                    });
+                })
+            );
+        });
+    }
+}
