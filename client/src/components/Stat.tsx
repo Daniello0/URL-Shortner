@@ -19,14 +19,13 @@ function Stat() {
         if (!shortCode) return;
 
         const allLinks: (Link)[] = LocalStorageController.getLinks();
-        const statUrlPath = '/' + shortCode;
 
-        const foundLink: Link | undefined = allLinks.find(item => item.statUrl.pathname === statUrlPath);
+        const foundLink: Link | undefined = allLinks.find(item => item.shortUrlIndex === shortCode);
 
         if (foundLink) {
             setLink(foundLink);
         } else {
-            console.error("Данные для этого кода не найдены:", statUrlPath);
+            console.error("Данные для этого кода не найдены:", shortCode);
         }
     }, [shortCode]);
 
@@ -42,14 +41,14 @@ function Stat() {
 
             const allLinks: (Link)[] = LocalStorageController.getLinks();
             const updatedLinks: (Link)[] = allLinks.map((item: Link) => {
-                    if (item.shortUrl.toString() === link.shortUrl.toString()) {
-                        return new Link(item.url, item.shortUrl, item.statUrl, []);
+                    if (item.shortUrlIndex === link.shortUrlIndex) {
+                        return new Link(item.url, item.shortUrlIndex, []);
                     }
                     return item;
             });
 
             LocalStorageController.saveLinks(updatedLinks);
-            setLink(updatedLinks.find((item: Link) => item.shortUrl.toString() === link.shortUrl.toString()) || null);
+            setLink(updatedLinks.find((item: Link) => item.shortUrlIndex === link.shortUrlIndex) || null);
         }
     }
 

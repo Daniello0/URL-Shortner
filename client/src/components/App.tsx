@@ -41,7 +41,7 @@ function App() {
 
     function removeDataFromLinks(data: Link): void {
         setLinks((prevState: Link[]) => prevState.filter((link: Link) =>
-            link.shortUrl.toString() !== data.shortUrl.toString()));
+            link.shortUrlIndex !== data.shortUrlIndex));
     }
 
     function addUserStatisticToData(data: Link) {
@@ -55,8 +55,8 @@ function App() {
                 addDataToLinks(data);
             });
 
-            if (data.statUrl) {
-                window.open(data.statUrl.toString(), '_blank', 'noopener,noreferrer');
+            if (data.shortUrlIndex) {
+                window.open(data.shortUrlIndex, '_blank', 'noopener,noreferrer');
             }
         }
     }
@@ -69,8 +69,8 @@ function App() {
 
     const handleStatUrlClick = (data: Link) => {
         return () => {
-            if (data.statUrl) {
-                navigate(`/stat${data.statUrl.pathname}`);
+            if (data.shortUrlIndex) {
+                navigate(`/stat/${data.shortUrlIndex}`);
             }
         }
     }
@@ -80,8 +80,6 @@ function App() {
     }
 
     const handleAddUrlButtonClick = async () => {
-
-
         if (!validateUrlString(urlString)) {
             setErrorMessage("Введите ссылку");
             return;
@@ -91,7 +89,7 @@ function App() {
             const data: Link = await Link.create(urlString);
 
             if (links.find((link: Link) =>
-                link.shortUrl.toString() === data.shortUrl.toString())) {
+                link.shortUrlIndex === data.shortUrlIndex)) {
                 setErrorMessage("Ссылка уже добавлена в таблицу");
                 return;
             }
@@ -109,9 +107,9 @@ function App() {
 
     if (links) {
         links.sort((a: Link, b: Link) => {
-                if (a.shortUrl.toString() < b.shortUrl.toString()) {
+                if (a.shortUrlIndex < b.shortUrlIndex) {
                     return -1;
-                } else if (a.shortUrl.toString() > b.shortUrl.toString()) {
+                } else if (a.shortUrlIndex > b.shortUrlIndex) {
                     return 1;
                 } else {
                     return 0;
@@ -144,7 +142,7 @@ function App() {
 
                 {links.map((data) => {
                     return (
-                        <div className="url-row url-row-layout" key={data.shortUrl.toString()}>
+                        <div className="url-row url-row-layout" key={data.shortUrlIndex}>
                             <div className="column-main-url">
                                 <a className="url-text" href={data.url.toString()}
                                    target="_blank" rel="noopener noreferrer">
@@ -154,13 +152,13 @@ function App() {
                             <div className="column-short-url">
                                 <div className="url-text" role="link"
                                      onClick={addUserStatisticToData(data)}>
-                                    {data.shortUrl.toString()}
+                                    {data.shortUrlIndex}
                                 </div>
                             </div>
                             <div className="column-stats">
                                 <div onClick={handleStatUrlClick(data)}
                                    className="stats-link">
-                                    {data.statUrl.toString()}
+                                    {data.shortUrlIndex}
                                 </div>
                             </div>
                             <div className="column-action">

@@ -12,8 +12,7 @@ interface PlainUserStatistic {
 
 interface PlainData {
     url: string | "";
-    shortUrl: string | "";
-    statUrl: string | "";
+    shortUrlIndex: string | "";
     userStatistic: PlainUserStatistic[];
 }
 
@@ -39,15 +38,14 @@ export default class LocalStorageController {
                     });
                 });
 
-                if (plainObj.url && plainObj.shortUrl && plainObj.statUrl) {
+                if (plainObj.url && plainObj.shortUrlIndex && plainObj.userStatistic) {
                     return new Link(
                         new URL(plainObj.url),
-                        new URL(plainObj.shortUrl),
-                        new URL(plainObj.statUrl),
+                        plainObj.shortUrlIndex,
                         hydratedStats
                     );
                 } else {
-                    return new Link(new URL(""), new URL(""), new URL(""))
+                    return new Link(new URL(""), "")
                 }
             });
         } catch (error) {
@@ -60,14 +58,13 @@ export default class LocalStorageController {
     static saveLinks(links: Link[]): void {
         try {
             const dataToSave: (PlainData | null)[]  = links.map((data: Link): PlainData | null => {
-                if (!data.url || !data.shortUrl ||  !data.statUrl) {
+                if (!data.url || !data.shortUrlIndex) {
                     return null;
                 }
 
                 return {
                     url: data.url.toString(),
-                    shortUrl: data.shortUrl.toString(),
-                    statUrl: data.statUrl.toString(),
+                    shortUrlIndex: data.shortUrlIndex,
 
                     userStatistic: data.userStatistic.map(stat => {
                         return {

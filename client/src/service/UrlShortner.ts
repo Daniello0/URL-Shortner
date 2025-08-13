@@ -1,5 +1,5 @@
 export default class UrlShortner {
-    async getShortUrlString(urlString: string): Promise<string | null> {
+    async getShortUrlIndex(urlString: string): Promise<string | null> {
         let apiUrl: string = "https://clck.ru/--";
         try {
             const response: Response = await fetch(apiUrl, {

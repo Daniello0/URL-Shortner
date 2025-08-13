@@ -5,14 +5,12 @@ import UserStatistic from "./UserStatistic";
 export default class Link {
 
     url: URL;
-    shortUrl: URL;
-    statUrl: URL;
+    shortUrlIndex: string;
     userStatistic: UserStatistic[] | [];
 
-    constructor (originalUrl: URL, shortUrl: URL, statUrl: URL, userStatistic: UserStatistic[] = []) {
+    constructor (originalUrl: URL, shortUrlIndex: string, userStatistic: UserStatistic[] = []) {
         this.url = originalUrl;
-        this.shortUrl = shortUrl;
-        this.statUrl = statUrl;
+        this.shortUrlIndex = shortUrlIndex;
         this.userStatistic = userStatistic;
     }
 
@@ -21,21 +19,18 @@ export default class Link {
             const originalUrl = new URL(urlString);
 
             const shortner = new UrlShortner();
-            let shortUrlString: string | null = await shortner.getShortUrlString(urlString);
+            let shortUrlIndex: string | null = await shortner.getShortUrlIndex(urlString);
 
-            if (!shortUrlString) {
+            if (!shortUrlIndex) {
                 console.error("Не удалось создать короткую ссылку");
-                shortUrlString = "";
+                shortUrlIndex = "";
             }
 
-            const shortUrl = new URL(shortUrlString);
-            const statUrl = new URL(shortUrlString + "+");
-
-            return new Link(originalUrl, shortUrl, statUrl);
+            return new Link(originalUrl, shortUrlIndex);
 
         } catch (error) {
-            console.error("Ошибка при создании Data-класса:", error);
-            return new Link(new URL(""), new URL(""), new URL(""));
+            console.error("Ошибка при создании Link-класса:", error);
+            return new Link(new URL(""), "");
         }
     }
 
