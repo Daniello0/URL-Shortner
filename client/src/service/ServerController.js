@@ -53,7 +53,7 @@ class ServerController {
     static async getLinksFromDB() {
         console.log("Старт getLinksFromDB");
         try {
-            const response = await fetch("http://localhost:3001/database/read", {
+            const response = await fetch("http://localhost:3001/database/readAll", {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -64,6 +64,28 @@ class ServerController {
                 const links = await response.json();
                 console.log("Полученные данные на клиенте: ", links);
                 console.log("Часть данных: ", links[0].url);
+            }
+        } catch (error) {
+            console.log("Ошибка сети: ", error);
+        }
+    }
+
+    static async getLinkFromDB(shortUrlIndex) {
+        console.log("Старт getLinkFromDB");
+        try {
+            const response = await fetch("http://localhost:3001/database/readOne", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    shortUrlIndex: shortUrlIndex,
+                })
+            });
+
+            if (response.ok) {
+                const link = await response.json();
+                console.log("Полученные данные на клиенте: ", link);
             }
         } catch (error) {
             console.log("Ошибка сети: ", error);
@@ -137,4 +159,5 @@ class ServerController {
     }
 }
 
-ServerController.deleteLinkFromDB("34FGT");
+await ServerController.createLinkInDB({url: "https://www.youtube.com", shortUrlIndex: "YT123"});
+await ServerController.getLinkFromDB("YT123");

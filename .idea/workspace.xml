@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43611880-061c-41a6-b014-acd72eea1fb0" name="Changes" comment="add addUserStatisticToLinkInDB func">
+    <list default="true" id="43611880-061c-41a6-b014-acd72eea1fb0" name="Changes" comment="add resetUserStatisticInLinkInDB func">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/service/ServerController.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/service/ServerController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/DatabaseController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/DatabaseController.js" afterDir="false" />
@@ -172,6 +172,7 @@
       <workItem from="1754522396128" duration="14438000" />
       <workItem from="1754645044063" duration="19669000" />
       <workItem from="1754981508338" duration="16360000" />
+      <workItem from="1755071401229" duration="332000" />
     </task>
     <task id="LOCAL-00001" summary="working UrlShortner.js &amp; tests in UrlShortner.test.js">
       <option name="closed" value="true" />
@@ -445,7 +446,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755012852739</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="add resetUserStatisticInLinkInDB func">
+      <option name="closed" value="true" />
+      <created>1755013969300</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1755013969300</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -503,7 +512,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add working &quot;add url data to main page (table)&quot;" />
     <MESSAGE value="Some design changes," />
     <MESSAGE value="Some design changes, add delete-url func" />
     <MESSAGE value="add timeout to error messages" />
@@ -528,6 +536,7 @@
     <MESSAGE value="add connected DB, add addTestData.js (create test rows in DB), add ServerController.ts (test client-server connections)" />
     <MESSAGE value="add @types/node, add func create() in ServerController.js, add DatabaseController.js" />
     <MESSAGE value="add addUserStatisticToLinkInDB func" />
-    <option name="LAST_COMMIT_MESSAGE" value="add addUserStatisticToLinkInDB func" />
+    <MESSAGE value="add resetUserStatisticInLinkInDB func" />
+    <option name="LAST_COMMIT_MESSAGE" value="add resetUserStatisticInLinkInDB func" />
   </component>
 </project>

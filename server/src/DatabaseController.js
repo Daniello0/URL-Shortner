@@ -17,7 +17,19 @@ class DatabaseController {
         try {
             return await prisma.noUsersTable.findMany()
         } catch (error) {
-            console.error(error);
+            console.log("Ошибка сети: ", error);
+        }
+    }
+
+    static async readLink(shortUrlIndex) {
+        try {
+            return await prisma.noUsersTable.findFirst({
+                where: {
+                    shortUrlIndex: shortUrlIndex
+                }
+            });
+        } catch (error) {
+            console.log("Ошибка сети: ", error);
         }
     }
 

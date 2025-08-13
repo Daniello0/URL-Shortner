@@ -24,7 +24,15 @@ app.post('/database/create', (req, res) => {
 
 });
 
-app.get('/database/read', async (req, res) => {
+app.post('/database/readOne', async (req, res) => {
+    const {shortUrlIndex} = req.body;
+    const response = await DatabaseController.readLink(shortUrlIndex);
+    if (response) {
+        res.json(response);
+    }
+})
+
+app.get('/database/readAll', async (req, res) => {
     const response = await DatabaseController.readLinks();
     if (response) {
         res.json(response);
