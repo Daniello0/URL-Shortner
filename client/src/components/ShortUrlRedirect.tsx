@@ -1,3 +1,4 @@
+import {useEffect} from "react";
 import {useParams} from "react-router-dom";
 import ServerController from "../service/ServerController";
 import Link from "../models/Link";
@@ -22,13 +23,25 @@ function ShortUrlRedirect() {
         await ServerController.addDehydratedUserStatisticToLinkInDB(link.shortUrlIndex, stat);
     }
 
-    if (shortCode) {
+    useEffect(() => {
+        if (!shortCode) return;
+
+        // Защита от двойного запуска (StrictMode/быстрые обновления)
+        const key = `redirect_stat_${shortCode}`;
+        const now = Date.now();
+        const last = Number(sessionStorage.getItem(key) || "0");
+        if (now - last < 20) {
+            return;
+        }
+        sessionStorage.setItem(key, String(now));
+
         ServerController.getHydratedLinkFromDB(shortCode).then((link: Link | undefined) => {
             console.log(link);
             if (link) {
                 getUserStatisticData().then((stat: UserStatistic | undefined) => {
-                    if (!stat)
+                    if (!stat) {
                         return;
+                    }
 
                     addUserStatisticToDB(link, stat).then(() => {
                         const href = link.url.toString();
@@ -39,7 +52,7 @@ function ShortUrlRedirect() {
                 console.log("Не удалось найти ссылку: ", link);
             }
         });
-    }
+    }, [shortCode]);
 
     return (
         <div>
