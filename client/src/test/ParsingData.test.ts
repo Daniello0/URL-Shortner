@@ -1,4 +1,4 @@
-import UAParser from "ua-parser-js";
+import {UAParser} from "ua-parser-js";
 import IpInfo from "../service/IpInfo";
 
 describe('UserAgent', () => {

@@ -2,8 +2,7 @@ import DataMiner from "../service/DataMiner";
 
 describe('Data Miner', () => {
     test('Получение данных от getUserStatisticData()', async () => {
-        const dataMiner = new DataMiner();
-        let data = await dataMiner.getUserStatisticData();
+        let data = await DataMiner.getUserStatisticData();
         if (data) {
             console.log(data);
             console.log(data.getStatObj());
