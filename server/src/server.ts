@@ -1,7 +1,7 @@
-const express = require('express');
-const cors = require('cors');
-const DatabaseController = require("./DatabaseController");
-const ShortUrlIndexGenerator = require("./ShortUrlIndexGenerator");
+import express from 'express';
+import cors from 'cors';
+import DatabaseController from "./DatabaseController";
+import ShortUrlIndexGenerator from "./ShortUrlIndexGenerator";
 const app = express();
 const PORT = 3001;
 
@@ -18,10 +18,9 @@ app.post('/database/test', (req, res) => {
 
 app.post('/database/create', (req, res) => {
     const { url, shortUrlIndex } = req.body;
-    const response = DatabaseController.createLink({ url, shortUrlIndex });
-    if (response) {
+    DatabaseController.createLink({ url, shortUrlIndex }).then(() => {
         res.send("Ответ от сервера: успешно (/database/create)");
-    }
+    });
 
 });
 
@@ -33,7 +32,7 @@ app.post('/database/readOne', async (req, res) => {
     }
 })
 
-app.get('/database/readAll', async (req, res) => {
+app.get('/database/readAll', async (_req, res) => {
     const response = await DatabaseController.readLinks();
     if (response) {
         res.json(response);
@@ -42,32 +41,29 @@ app.get('/database/readAll', async (req, res) => {
 
 app.post('/database/delete', (req, res) => {
     const {shortUrlIndex} = req.body;
-    const response = DatabaseController.deleteLink(shortUrlIndex)
-    if (response) {
+    DatabaseController.deleteLink(shortUrlIndex).then(() => {
         res.send("Ответ от сервера: успешно (/database/delete)");
-    }
+    })
 });
 
 app.post('/database/addUserStatistic', (req, res) => {
     const {shortUrlIndex, userStatistic} = req.body;
-    const response = DatabaseController.addUserStatisticToLink(shortUrlIndex, userStatistic);
-    if (response) {
+    DatabaseController.addUserStatisticToLink(shortUrlIndex, userStatistic).then(() => {
         res.send("Ответ от сервера: успешно (/database/addUserStatistic)");
-    }
+    });
 });
 
 app.post('/database/resetUserStatistic', (req, res) => {
     const {shortUrlIndex} = req.body;
-    const response = DatabaseController.resetUserStatisticInLink(shortUrlIndex);
-    if (response) {
+    DatabaseController.resetUserStatisticInLink(shortUrlIndex).then(() => {
         res.send("Ответ от сервера: успешно (/database/resetUserStatistic)");
-    }
+    });
 });
 
-app.get('/generate/shortUrlIndex', (req, res) => {
+app.get('/generate/shortUrlIndex', (_req, res) => {
     const iteration = async () => {
-        const index = ShortUrlIndexGenerator.getRandomShortIndex();
-        const isDuplicate = await DatabaseController.existShortUrlIndex(index);
+        const index: string = ShortUrlIndexGenerator.getRandomShortIndex();
+        const isDuplicate: boolean | undefined = await DatabaseController.existShortUrlIndex(index);
         if (!isDuplicate) {
             return index;
         } else {
@@ -80,11 +76,11 @@ app.get('/generate/shortUrlIndex', (req, res) => {
     });
 });
 
-app.get('/checkConnection', (req, res) => {
+app.get('/checkConnection', (_req, res) => {
     res.sendStatus(204);
 });
 
-app.get('/api/test', (req, res) => {
+app.get('/api/test', (_req, res) => {
     res.json({ message: 'Привет от бэкенда! Все работает.' });
 });
 

@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43611880-061c-41a6-b014-acd72eea1fb0" name="Changes" comment="refactor /client, stop tracking .env">
+    <list default="true" id="43611880-061c-41a6-b014-acd72eea1fb0" name="Changes" comment="solved problem: duplicated user statistic">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/ShortUrlRedirect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ShortUrlRedirect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/DatabaseController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/DatabaseController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/ShortUrlIndexGenerator.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/ShortUrlIndexGenerator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +77,7 @@
     "npm.npm start.executor": "Run",
     "npm.run client.executor": "Run",
     "npm.run test.executor": "Run",
-    "ts.external.directory.path": "/Users/daniel/WebstormProjects/url-shortner/client/node_modules/typescript/lib",
+    "ts.external.directory.path": "/Users/daniel/WebstormProjects/url-shortner/server/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -545,7 +550,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755179820194</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="solved problem: duplicated user statistic">
+      <option name="closed" value="true" />
+      <created>1755182354846</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1755182354846</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -563,7 +576,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add back-button, minor changes in App.js, updated Router.js, working stats display" />
     <MESSAGE value="Add LocalStorageController.saveUrlData(), add useNavigation(), updates in Router.js, add reset button in Stats.js, updates in Stats.js" />
     <MESSAGE value="Add LocalStorageController.saveUrlData(), add useNavigation(), updates in Router.js, add reset button in Stats.js, updates in Stats.js. Add urlData sorting in App.js" />
     <MESSAGE value="delete console logging" />
@@ -588,6 +600,7 @@
     <MESSAGE value="delete useless files, file cleaning, start working on ServerController.checkConnection()" />
     <MESSAGE value="refactor test-dir to TS" />
     <MESSAGE value="refactor /client, stop tracking .env" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor /client, stop tracking .env" />
+    <MESSAGE value="solved problem: duplicated user statistic" />
+    <option name="LAST_COMMIT_MESSAGE" value="solved problem: duplicated user statistic" />
   </component>
 </project>

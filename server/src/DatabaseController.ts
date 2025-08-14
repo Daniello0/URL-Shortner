@@ -1,8 +1,8 @@
-const { PrismaClient } = require('../src/generated/prisma');
+import {PrismaClient} from "../src/generated/prisma";
 const prisma = new PrismaClient();
 
-class DatabaseController {
-    static async createLink({url, shortUrlIndex}) {
+export default class DatabaseController {
+    static async createLink({url, shortUrlIndex}: {url: string, shortUrlIndex: string}) {
         await prisma.noUsersTable.create({
             data: {
                 url: url,
@@ -20,7 +20,7 @@ class DatabaseController {
         }
     }
 
-    static async readLink(shortUrlIndex) {
+    static async readLink(shortUrlIndex: string) {
         try {
             return await prisma.noUsersTable.findFirst({
                 where: {
@@ -32,7 +32,7 @@ class DatabaseController {
         }
     }
 
-    static async deleteLink(shortUrlIndex) {
+    static async deleteLink(shortUrlIndex: string) {
         try {
             await prisma.noUsersTable.deleteMany({
                 where: {
@@ -44,7 +44,7 @@ class DatabaseController {
         }
     }
 
-    static async addUserStatisticToLink(shortUrlIndex, userStatisticToAdd) {
+    static async addUserStatisticToLink(shortUrlIndex: string, userStatisticToAdd: any) {
         try {
             const link = await prisma.noUsersTable.findFirst({
                 where: {
@@ -78,7 +78,7 @@ class DatabaseController {
         }
     }
 
-    static async resetUserStatisticInLink(shortUrlIndex) {
+    static async resetUserStatisticInLink(shortUrlIndex: string) {
         try {
             const link = await prisma.noUsersTable.findFirst({
                 where: {
@@ -110,7 +110,7 @@ class DatabaseController {
         }
     }
 
-    static async existShortUrlIndex(shortUrlIndex) {
+    static async existShortUrlIndex(shortUrlIndex: string) {
         try {
             const link = await prisma.noUsersTable.findFirst({
                 where: {
@@ -124,5 +124,3 @@ class DatabaseController {
         }
     }
 }
-
-module.exports = DatabaseController;

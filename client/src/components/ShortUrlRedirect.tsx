@@ -30,7 +30,7 @@ function ShortUrlRedirect() {
         const key = `redirect_stat_${shortCode}`;
         const now = Date.now();
         const last = Number(sessionStorage.getItem(key) || "0");
-        if (now - last < 20) {
+        if (now - last < 10) {
             return;
         }
         sessionStorage.setItem(key, String(now));
