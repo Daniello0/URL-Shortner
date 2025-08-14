@@ -18,16 +18,6 @@ function Stat() {
     useEffect(() => {
         if (!shortCode) return;
 
-        // const allLinks: (Link)[] = LocalStorageController.getLinks();
-        //
-        // const foundLink: Link | undefined = allLinks.find(item => item.shortUrlIndex === shortCode);
-        //
-        // if (foundLink) {
-        //     setLink(foundLink);
-        // } else {
-        //     console.error("Данные для этого кода не найдены:", shortCode);
-        // }
-
         ServerController.getHydratedLinkFromDB(shortCode).then((link: Link | undefined) => {
             if (link) {
                 setLink(link);
@@ -46,12 +36,20 @@ function Stat() {
 
     function handleResetButtonClick() {
         return () => {
-
+            if (link?.shortUrlIndex) {
+                ServerController.resetUserStatisticInLinkInDB(link.shortUrlIndex).then(() => {
+                    ServerController.getHydratedLinkFromDB(link.shortUrlIndex).then((link: Link | undefined) => {
+                        if (link) {
+                            setLink(link);
+                        }
+                    })
+                })
+            }
         }
     }
 
     if (!link) {
-        return <div className="stat-loading">Загрузка статистики...</div>;
+        return <div className="stat-loading">Загрузка...</div>;
     }
 
     return (

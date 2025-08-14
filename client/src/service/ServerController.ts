@@ -3,31 +3,22 @@ import UserStatistic from "../models/UserStatistic";
 import {PlainLink, PlainUserStatistic} from "../interfaces/Interfaces";
 
 export default class ServerController {
-    static async testPostToServer() {
-        console.log("Формирование запроса на сервер");
+
+    static async checkConnection(): Promise<boolean | undefined> {
+        console.log("Старт checkConnection()");
         try {
-            const response = await fetch("http://localhost:3001/database/test", {
-                method: 'POST',
+            const response = await fetch("http://localhost:3001/checkConnection", {
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    url: "https://www.youtube.com",
-                    shortUrlIndex: "34FGF",
-                    userStatistic: []
-                })
             });
 
-            console.log("Запрос отправлен, ожидаем ответ...");
-
             if (response.ok) {
-                const responseData = await response.text();
-                console.log("Ответ от сервера получен:", responseData);
-            } else {
-                console.error("Ошибка от сервера:", response.status);
+                return true;
             }
         } catch (error) {
-            console.error("Ошибка сети:", error);
+            return false;
         }
     }
 

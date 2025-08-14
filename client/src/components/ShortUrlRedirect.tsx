@@ -13,8 +13,7 @@ function ShortUrlRedirect() {
     console.log(shortCode);
 
     const getUserStatisticData = async () => {
-        const dataMiner = new DataMiner();
-        const stat = await dataMiner.getUserStatisticData();
+        const stat = await DataMiner.getUserStatisticData();
         console.log(stat);
         return stat;
     }

@@ -4,7 +4,7 @@ import {IResult, UAParser} from "ua-parser-js";
 
 export default class DataMiner {
 
-    async getUserStatisticData() {
+    static async getUserStatisticData() {
         const ipInfo = new IpInfo();
         const ipData: {ip: string, region: string} | null = await ipInfo.getIpInfo();
 

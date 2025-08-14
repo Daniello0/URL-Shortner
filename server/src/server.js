@@ -78,6 +78,12 @@ app.get('/generate/shortUrlIndex', (req, res) => {
     iteration().then((index) => {
         res.send(index);
     });
+});
+
+app.get('/checkConnection', (req, res) => {
+    res.send({
+        connected: true
+    });
 })
 
 app.get('/api/test', (req, res) => {

@@ -1,13 +1,13 @@
 import './App.css';
 import {useEffect, useState} from "react";
 import Link from "../models/Link";
-import LocalStorageController from "../service/LocalStorageController";
 import {NavigateFunction, useNavigate} from "react-router-dom";
 import ServerController from "../service/ServerController";
 
 function App() {
     const [urlString, setUrlString] = useState('');
     const [error, setErrorMessage] = useState('');
+    const [isServerConnected, setIsServerConnected] = useState(false);
 
     //Перед получением добавляет типы данных
     const [links, setLinks] = useState<(Link)[]>(() => {
@@ -23,9 +23,6 @@ function App() {
     const navigate: NavigateFunction = useNavigate();
 
     // useEffect для сохранения urlDate в localStorage (перед сохранением убирает типы данных)
-    useEffect(() => {
-        LocalStorageController.saveLinks(links);
-    }, [links]);
 
     useEffect(() => {
         let timerId: NodeJS.Timeout | undefined;
@@ -38,6 +35,14 @@ function App() {
         return () => clearTimeout(timerId);
     }, [error]);
 
+    useEffect(() => {
+        ServerController.checkConnection().then((value: boolean | undefined) => {
+            if (value !== undefined) {
+                setIsServerConnected(value);
+            }
+        });
+    }, []);
+
     function validateUrlString(urlString: string) {
         return urlString;
     }
@@ -45,7 +50,6 @@ function App() {
     async function addDataToLinks(data: Link): Promise<void> {
         await ServerController.createLinkInDB({url: data.url.toString(), shortUrlIndex: data.shortUrlIndex});
         setLinks(links => [...links, data]);
-        // setLinks(prevState => [...prevState, data]);
     }
 
     async function removeDataFromLinks(data: Link): Promise<void> {
@@ -71,12 +75,17 @@ function App() {
     const handleShortUrlClick = (data: Link) => {
         return () => {
             if (data.shortUrlIndex) {
-                navigate(`/${data.shortUrlIndex}`);
+                window.open(window.location.origin + "/" + data.shortUrlIndex, "_blank", "noopener,noreferrer");
             }
         }
     }
 
     const handleAddUrlButtonClick = async () => {
+        if (!isServerConnected) {
+            setErrorMessage('Не удалось подключиться к серверу');
+            return;
+        }
+
         if (!validateUrlString(urlString)) {
             setErrorMessage("Введите ссылку");
             return;

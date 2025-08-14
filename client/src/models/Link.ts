@@ -1,5 +1,4 @@
 import ShortUrlIndex from "../service/ShortUrlIndex";
-import DataMiner from "../service/DataMiner";
 import UserStatistic from "./UserStatistic";
 
 export default class Link {
@@ -26,12 +25,5 @@ export default class Link {
             // console.error("Ошибка при создании Link-класса:", error);
             return new Link(new URL(""), "");
         }
-    }
-
-    async addUserStatistic() {
-        await new DataMiner().getUserStatisticData().then((userStat: UserStatistic | undefined) => {
-            if (!userStat) return;
-            this.userStatistic = [...this.userStatistic, userStat];
-        });
     }
 }

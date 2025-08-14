@@ -1,21 +1,10 @@
 import {Route, Routes} from "react-router-dom";
 import Stat from "./Stat";
-import LocalStorageController from "../service/LocalStorageController";
 import App from "./App";
 import ShortUrlRedirect from "./ShortUrlRedirect";
-import {useEffect, useState} from "react";
-import Link from "../models/Link";
 
 
 function Router() {
-    const [links] = useState<(Link)[]>(() => {
-        return LocalStorageController.getLinks();
-    })
-
-    useEffect(() => {
-        LocalStorageController.saveLinks(links);
-    }, [links]);
-
     return (
         <div className="router">
             <Routes>
