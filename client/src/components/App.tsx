@@ -110,8 +110,12 @@ function App() {
         }
     }
 
-    const betaHandleAddUrlButtonClick = async () => {
-        await handleAddUrlButtonClick();
+    const handleShortUrlClick = (data: Link) => {
+        return () => {
+            if (data.shortUrlIndex) {
+                navigate(`/${data.shortUrlIndex}`);
+            }
+        }
     }
 
     const handleAddUrlButtonClick = async () => {
@@ -156,7 +160,7 @@ function App() {
                     value={urlString}
                     onChange={(e) => setUrlString(e.target.value)}
                 />
-                <button className="button" onClick={betaHandleAddUrlButtonClick}>
+                <button className="button" onClick={handleAddUrlButtonClick}>
                     Добавить
                 </button>
             </div>
@@ -179,11 +183,10 @@ function App() {
                                 </a>
                             </div>
                             <div className="column-short-url">
-                                <a className="url-text" role="link"
-                                   href={window.location.origin + "/" + data.shortUrlIndex}
-                                   target="_blank" rel="noopener,noreferrer">
+                                <div className="url-text" role="link"
+                                onClick={handleShortUrlClick(data)}>
                                     {window.location.origin + "/" + data.shortUrlIndex}
-                                </a>
+                                </div>
                             </div>
                             <div className="column-stats">
                                 <div onClick={handleStatUrlClick(data)}

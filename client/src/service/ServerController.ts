@@ -77,7 +77,7 @@ export default class ServerController {
     }
 
     static async getHydratedLinkFromDB(shortUrlIndex: string): Promise<Link | undefined> {
-        console.log("Старт getLinkFromDB");
+        console.log("Старт getHydratedLinkFromDB");
         try {
             const response = await fetch("http://localhost:3001/database/readOne", {
                 method: 'POST',
@@ -120,9 +120,10 @@ export default class ServerController {
         }
     }
 
-    static async addUserStatisticToLinkInDB(shortUrlIndex: string, userStatisticToAdd: UserStatisticInterface) {
+    static async addDehydratedUserStatisticToLinkInDB(shortUrlIndex: string, userStatistic: UserStatistic) {
         console.log("Старт addUserStatisticToLinkInDB");
         try {
+            const userStatisticToAdd = this.dehydrateUserStatistic(userStatistic);
             const response = await fetch("http://localhost:3001/database/addUserStatistic", {
                 method: 'POST',
                 headers: {
@@ -199,6 +200,17 @@ export default class ServerController {
                 })
             })
         );
+    }
+
+    static dehydrateUserStatistic(userStatistic: UserStatistic) {
+        return {
+            date: userStatistic.date,
+            ip: userStatistic.ip,
+            region: userStatistic.region,
+            browser: userStatistic.browser,
+            browserVersion: userStatistic.browserVersion,
+            os: userStatistic.os
+        }
     }
 
 }

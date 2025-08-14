@@ -4,12 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43611880-061c-41a6-b014-acd72eea1fb0" name="Changes" comment="add and connect short url index generator">
-      <change afterPath="$PROJECT_DIR$/client/src/interfaces/Interfaces.ts" afterDir="false" />
+    <list default="true" id="43611880-061c-41a6-b014-acd72eea1fb0" name="Changes" comment="add Interfaces.ts, add getting short url index in Stat.tsx">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/990ffe9a-6241-4e7a-9bdb-5f209025eded.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/990ffe9a-6241-4e7a-9bdb-5f209025eded/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/990ffe9a-6241-4e7a-9bdb-5f209025eded/storage_v2/_src_/schema/mysql.osA4Bg.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/990ffe9a-6241-4e7a-9bdb-5f209025eded/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/990ffe9a-6241-4e7a-9bdb-5f209025eded/storage_v2/_src_/schema/sys.zb4BAA.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/ShortUrlRedirect.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Router.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Stat.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Stat.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/service/LocalStorageController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/service/LocalStorageController.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/service/ServerController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/service/ServerController.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +28,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="TypeScript JSX File" />
         <option value="JavaScript File" />
+        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
       </list>
     </option>
@@ -58,28 +65,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;TypeScript&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/daniel/WebstormProjects/url-shortner/server&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;/Users/daniel/Library/Application Support/JetBrains/WebStorm2025.1/node/versions/22.17.0/bin/node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.npm start.executor&quot;: &quot;Run&quot;,
-    &quot;npm.run client.executor&quot;: &quot;Run&quot;,
-    &quot;npm.run test.executor&quot;: &quot;Run&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/daniel/WebstormProjects/url-shortner/server/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "TypeScript",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/Users/daniel/WebstormProjects/url-shortner/server",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "/Users/daniel/Library/Application Support/JetBrains/WebStorm2025.1/node/versions/22.17.0/bin/node",
+    "nodejs_package_manager_path": "npm",
+    "npm.npm start.executor": "Run",
+    "npm.run client.executor": "Run",
+    "npm.run test.executor": "Run",
+    "ts.external.directory.path": "/Users/daniel/WebstormProjects/url-shortner/server/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/server" />
@@ -174,7 +186,7 @@
       <workItem from="1754522396128" duration="14438000" />
       <workItem from="1754645044063" duration="19669000" />
       <workItem from="1754981508338" duration="16360000" />
-      <workItem from="1755071401229" duration="18408000" />
+      <workItem from="1755071401229" duration="25415000" />
     </task>
     <task id="LOCAL-00001" summary="working UrlShortner.js &amp; tests in UrlShortner.test.js">
       <option name="closed" value="true" />
@@ -496,7 +508,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755093565811</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="add Interfaces.ts, add getting short url index in Stat.tsx">
+      <option name="closed" value="true" />
+      <created>1755095886048</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1755095886048</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -514,7 +534,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add , minor updates." />
     <MESSAGE value="repair addUserStatisticToData() func, fix addUserStatistic(),working adding UserStatistic, minor updates." />
     <MESSAGE value="add Router.js &amp; Stat page, use &quot;react-router-dom&quot; lib, add page transition" />
     <MESSAGE value="add LocalStorageController.js, delete Url.js, add transition to Stat component by url click in App component, updates in Router.js" />
@@ -539,6 +558,7 @@
     <MESSAGE value="add hydrate func in ServerController.ts, convert ServerController to TS" />
     <MESSAGE value="replace localStorage to Server&amp;DB in App.js, start working on addUserStatistic" />
     <MESSAGE value="add and connect short url index generator" />
-    <option name="LAST_COMMIT_MESSAGE" value="add and connect short url index generator" />
+    <MESSAGE value="add Interfaces.ts, add getting short url index in Stat.tsx" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Interfaces.ts, add getting short url index in Stat.tsx" />
   </component>
 </project>

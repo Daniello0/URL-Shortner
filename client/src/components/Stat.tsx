@@ -4,7 +4,6 @@ import {NavigateFunction, useNavigate, useParams} from "react-router-dom";
 import LocalStorageController from "../service/LocalStorageController";
 import Link from "../models/Link";
 import ServerController from "../service/ServerController";
-import {PlainLink} from "../interfaces/Interfaces";
 
 
 function Stat() {
@@ -48,18 +47,7 @@ function Stat() {
 
     function handleResetButtonClick() {
         return () => {
-            if (!link) return;
 
-            const allLinks: (Link)[] = LocalStorageController.getLinks();
-            const updatedLinks: (Link)[] = allLinks.map((item: Link) => {
-                    if (item.shortUrlIndex === link.shortUrlIndex) {
-                        return new Link(item.url, item.shortUrlIndex, []);
-                    }
-                    return item;
-            });
-
-            LocalStorageController.saveLinks(updatedLinks);
-            setLink(updatedLinks.find((item: Link) => item.shortUrlIndex === link.shortUrlIndex) || null);
         }
     }
 
