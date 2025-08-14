@@ -1,5 +1,5 @@
 import Link from "../models/Link";
-import UserStatistic, {UserStatisticInterface} from "../models/UserStatistic";
+import UserStatistic from "../models/UserStatistic";
 import {PlainLink, PlainUserStatistic} from "../interfaces/Interfaces";
 
 export default class ServerController {

@@ -1,6 +1,5 @@
 const { PrismaClient } = require('../src/generated/prisma');
 const prisma = new PrismaClient();
-const DataMiner = require('./userStatisticModules/DataMiner.js');
 
 class DatabaseController {
     static async createLink({url, shortUrlIndex}) {

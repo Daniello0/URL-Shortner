@@ -4,8 +4,6 @@ import Link from "../models/Link";
 import LocalStorageController from "../service/LocalStorageController";
 import {NavigateFunction, useNavigate} from "react-router-dom";
 import ServerController from "../service/ServerController";
-import DataMiner from "../service/DataMiner";
-import UserStatistic from "../models/UserStatistic";
 
 function App() {
     const [urlString, setUrlString] = useState('');
@@ -54,46 +52,6 @@ function App() {
         await ServerController.deleteLinkFromDB(data.shortUrlIndex);
         setLinks((prevState: Link[]) => prevState.filter((link: Link) =>
             link.shortUrlIndex !== data.shortUrlIndex));
-    }
-
-    function addUserStatisticToData(data: Link) {
-        return () => {
-
-        }
-        /*return () => {
-            const addUserStat = async () => {
-                await data.addUserStatistic();
-            }
-
-            addUserStat().then(() => {
-                removeDataFromLinks(data);
-                addDataToLinks(data);
-            });
-
-            if (data.shortUrlIndex) {
-                window.open(data.shortUrlIndex, '_blank', 'noopener,noreferrer');
-            }
-        }*/
-
-        /*return async () => {
-            let newUserStatistic = new UserStatistic({ip: "Не определено", date: "Не определено", os: "Не определено",
-                browser: "Не определено", browserVersion: "Не определено", region: "Не определено"});
-            await new DataMiner().getUserStatisticData().then((userStat: UserStatistic | undefined) => {
-                if (!userStat) {
-                    return;
-                }
-                newUserStatistic.ip = userStat?.ip || "";
-                newUserStatistic.browser = userStat?.browser || "";
-                newUserStatistic.browserVersion = userStat?.browserVersion || "";
-                newUserStatistic.os = userStat?.os || "";
-                newUserStatistic.region = userStat?.region || "";
-                newUserStatistic.date = userStat?.date || "";
-            });
-            await ServerController.addUserStatisticToLinkInDB(data.shortUrlIndex, newUserStatistic);
-            if (data.shortUrlIndex) {
-                window.open(data.shortUrlIndex, '_blank', 'noopener,noreferrer');
-            }
-        }*/
     }
 
     const handleDeleteButtonPressed = (data: Link) => {

@@ -1,7 +1,6 @@
 import "./Stat.css"
 import {useEffect, useState} from "react";
 import {NavigateFunction, useNavigate, useParams} from "react-router-dom";
-import LocalStorageController from "../service/LocalStorageController";
 import Link from "../models/Link";
 import ServerController from "../service/ServerController";
 
