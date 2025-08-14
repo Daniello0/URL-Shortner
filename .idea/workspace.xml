@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43611880-061c-41a6-b014-acd72eea1fb0" name="Changes" comment="delete useless files, file cleaning, start working on ServerController.checkConnection()">
+    <list default="true" id="43611880-061c-41a6-b014-acd72eea1fb0" name="Changes" comment="refactor test-dir to TS">
+      <change afterPath="$PROJECT_DIR$/server/.env.examle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Stat.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Stat.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/service/DataMiner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/service/DataMiner.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/service/ServerController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/service/ServerController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/reportWebVitals.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/reportWebVitals.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/setupTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/setupTests.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/server/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,33 +60,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;TypeScript&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/daniel/WebstormProjects/url-shortner/server&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;/Users/daniel/Library/Application Support/JetBrains/WebStorm2025.1/node/versions/22.17.0/bin/node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.npm start.executor&quot;: &quot;Run&quot;,
-    &quot;npm.run client.executor&quot;: &quot;Run&quot;,
-    &quot;npm.run test.executor&quot;: &quot;Run&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/daniel/WebstormProjects/url-shortner/server/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/Users/daniel/WebstormProjects/url-shortner/server",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "/Users/daniel/Library/Application Support/JetBrains/WebStorm2025.1/node/versions/22.17.0/bin/node",
+    "nodejs_package_manager_path": "npm",
+    "npm.npm start.executor": "Run",
+    "npm.run client.executor": "Run",
+    "npm.run test.executor": "Run",
+    "ts.external.directory.path": "/Users/daniel/WebstormProjects/url-shortner/client/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/server" />
@@ -535,7 +535,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755167489926</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="refactor test-dir to TS">
+      <option name="closed" value="true" />
+      <created>1755179005289</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1755179005289</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -553,7 +561,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add LocalStorageController.js, delete Url.js, add transition to Stat component by url click in App component, updates in Router.js" />
     <MESSAGE value="start creating stat page design" />
     <MESSAGE value="add back-button, minor changes in App.js, updated Router.js, working stats display" />
     <MESSAGE value="Add LocalStorageController.saveUrlData(), add useNavigation(), updates in Router.js, add reset button in Stats.js, updates in Stats.js" />
@@ -578,6 +585,7 @@
     <MESSAGE value="add addUserStatisticToDB (working), working short url &amp; stat url" />
     <MESSAGE value="minor changes" />
     <MESSAGE value="delete useless files, file cleaning, start working on ServerController.checkConnection()" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete useless files, file cleaning, start working on ServerController.checkConnection()" />
+    <MESSAGE value="refactor test-dir to TS" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor test-dir to TS" />
   </component>
 </project>
