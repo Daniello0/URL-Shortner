@@ -81,10 +81,8 @@ app.get('/generate/shortUrlIndex', (req, res) => {
 });
 
 app.get('/checkConnection', (req, res) => {
-    res.send({
-        connected: true
-    });
-})
+    res.sendStatus(204);
+});
 
 app.get('/api/test', (req, res) => {
     res.json({ message: 'Привет от бэкенда! Все работает.' });

@@ -4,21 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43611880-061c-41a6-b014-acd72eea1fb0" name="Changes" comment="minor changes">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
+    <list default="true" id="43611880-061c-41a6-b014-acd72eea1fb0" name="Changes" comment="delete useless files, file cleaning, start working on ServerController.checkConnection()">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Router.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/ShortUrlRedirect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ShortUrlRedirect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Stat.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Stat.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/models/Link.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/models/Link.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Stat.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Stat.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/service/DataMiner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/service/DataMiner.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/service/LocalStorageController.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/service/ServerController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/service/ServerController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/addTestData.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/userStatisticModules/DataMiner.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/userStatisticModules/IpInfo.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +50,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -187,7 +181,7 @@
       <workItem from="1754522396128" duration="14438000" />
       <workItem from="1754645044063" duration="19669000" />
       <workItem from="1754981508338" duration="16360000" />
-      <workItem from="1755071401229" duration="29196000" />
+      <workItem from="1755071401229" duration="31183000" />
     </task>
     <task id="LOCAL-00001" summary="working UrlShortner.js &amp; tests in UrlShortner.test.js">
       <option name="closed" value="true" />
@@ -533,7 +527,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755163917571</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="delete useless files, file cleaning, start working on ServerController.checkConnection()">
+      <option name="closed" value="true" />
+      <created>1755167489926</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1755167489926</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -551,7 +553,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add Router.js &amp; Stat page, use &quot;react-router-dom&quot; lib, add page transition" />
     <MESSAGE value="add LocalStorageController.js, delete Url.js, add transition to Stat component by url click in App component, updates in Router.js" />
     <MESSAGE value="start creating stat page design" />
     <MESSAGE value="add back-button, minor changes in App.js, updated Router.js, working stats display" />
@@ -576,6 +577,7 @@
     <MESSAGE value="add Interfaces.ts, add getting short url index in Stat.tsx" />
     <MESSAGE value="add addUserStatisticToDB (working), working short url &amp; stat url" />
     <MESSAGE value="minor changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="delete useless files, file cleaning, start working on ServerController.checkConnection()" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete useless files, file cleaning, start working on ServerController.checkConnection()" />
   </component>
 </project>

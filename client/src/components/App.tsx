@@ -36,12 +36,18 @@ function App() {
     }, [error]);
 
     useEffect(() => {
-        ServerController.checkConnection().then((value: boolean | undefined) => {
-            if (value !== undefined) {
-                setIsServerConnected(value);
-            }
-        });
+        let mounted = true;
+
+        (async () => {
+            const ok = await ServerController.checkConnection();
+            if (mounted) setIsServerConnected(ok);
+        })();
+
+        return () => {
+            mounted = false;
+        };
     }, []);
+
 
     function validateUrlString(urlString: string) {
         return urlString;

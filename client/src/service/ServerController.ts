@@ -4,21 +4,28 @@ import {PlainLink, PlainUserStatistic} from "../interfaces/Interfaces";
 
 export default class ServerController {
 
-    static async checkConnection(): Promise<boolean | undefined> {
+    static async checkConnection(timeoutMs = 5000): Promise<boolean> {
         console.log("Старт checkConnection()");
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
         try {
             const response = await fetch("http://localhost:3001/checkConnection", {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                method: "GET",
+                signal: controller.signal,
+                cache: "no-store",
             });
 
-            if (response.ok) {
-                return true;
-            }
+            return response.ok;
         } catch (error) {
+            if ((error as Error).name === "AbortError") {
+                console.warn("Проверка соединения: таймаут");
+            } else {
+                console.warn("Проверка соединения: ошибка сети", error);
+            }
             return false;
+        } finally {
+            clearTimeout(timeoutId);
         }
     }
 
